@@ -11,6 +11,12 @@ class AddOn extends Model
 
     protected $fillable = [
         'nama_addon',
-        'harga_addon'
+        'keterangan_addon',
+        'harga_addon',
+        'produk_id'
     ];
+
+    public function produk() {
+        return $this->belongsTo(Produk::class, 'produk_id');
+    }
 }

@@ -11,8 +11,24 @@ class Produk extends Model
 
     protected $fillable = [
         'nama_produk',
-        'deskripsi_produk',
+        'durasi_foto',
+        'edit_foto',
+        'total_crew',
+        'cetak_foto',
         'harga_produk',
-        'keterangan_produk'
+        'total_orang',
+        'kategori_id'
     ];
+
+    public function kategori() {
+        return $this->belongsTo(Kategori::class, 'kategori_id');
+    }
+
+    public function addon() {
+        return $this->hasMany(AddOn::class, 'produk_id');
+    }
+
+    public function portofolio() {
+        return $this->hasMany(Portofolio::class, 'produk_id');
+    }
 }

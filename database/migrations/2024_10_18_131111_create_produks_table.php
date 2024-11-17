@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('kategori_id')->constrained('kategoris')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('nama_produk');
-            $table->string('deskripsi_produk');
+            $table->string('durasi_foto');
+            $table->string('edit_foto');
+            $table->string('total_crew');
+            $table->string('cetak_foto');
             $table->string('harga_produk');
-            $table->string('keterangan_produk');
+            $table->string('total_orang');
             $table->timestamps();
         });
     }

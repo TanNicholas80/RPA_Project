@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('produk_id')->constrained('produks')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('nama_addon');
+            $table->string('keterangan_addon');
             $table->string('harga_addon');
             $table->timestamps();
         });

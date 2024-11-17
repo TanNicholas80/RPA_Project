@@ -12,4 +12,8 @@ class Portofolio extends Model
     protected $fillable = [
         'foto_portofolio'
     ];
+
+    public function produk() {
+        return $this->belongsTo(Produk::class, 'produk_id');
+    }
 }
