@@ -6,3 +6,91 @@
 .nav_hover:hover {
     background-color: #F9EED8;
 }
+
+/* Animasi Kartu Kontak Kami */
+.social-card:hover {
+    background-color: white;
+    border: 2px solid #764C31; /* hover:border-gray-400 */
+}
+
+.social-card:hover .username {
+    font-weight: bold;
+}
+
+/* Animasi Map */
+.map-img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.map-overlay {
+    opacity: 0;
+    transform: scale(1);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+.map-text {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out; /* Smooth transition */
+}
+
+.map-link:hover .map-overlay {
+    opacity: 1;
+    transform: scale(0.95);
+}
+
+.map-link:hover .map-text {
+    opacity: 1;
+}
+
+.map-link:hover .map-img {
+    transform: scale(0.95); /* Apply zoom-out to image */
+}
+
+/* Animasi Card Product */
+.card-product {
+    position: relative;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.card-product::before {
+    content: ""; /* Membuat pseudo-element */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff; /* Warna putih mengikuti background card */
+    filter: blur(15px); /* Efek blur untuk membuat cahaya */
+    opacity: 0; /* Efek tidak terlihat di awal */
+    z-index: -1; /* Pastikan efek glowing berada di belakang card */
+    transition: opacity 0.3s ease-in-out;
+}
+
+.card-product:hover {
+    transform: scale(1.10);
+    filter: brightness(1.2); /* Menambah kecerahan card */
+}
+
+.card-product:hover::before {
+    opacity: 1; /* Efek glowing muncul saat hover */
+}
+
+/* About Me Style Card */
+.card-about {
+    border: 1px solid #3E3A3340;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.icon-about {
+    transition: background-color 0.3s ease-in-out;
+}
+
+.card-about:hover {
+    background-color: #FFF6E4;
+}
+
+.card-about:hover .icon-about {
+    background-color: #764C31;
+}
