@@ -33,17 +33,11 @@
                             data-bs-original-title="Edit Tambahan">
                             <i class="cursor-pointer fa-solid fa-pen-to-square text-xl text-yellow-600"></i>
                         </button>
-                        <span>
-                            <form action="{{ route('addon.destroy', $add->id) }}" method="POST"
-                                style="display:inline;" class="mx-3">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn bg-inherit" data-bs-toggle="tooltip"
-                                    data-bs-original-title="Delete Tambahan">
-                                    <i class="cursor-pointer fas fa-trash text-xl text-red-600"></i>
-                                </button>
-                            </form>
-                        </span>
+                        <button type="button" class="btn bg-inherit" data-bs-toggle="tooltip"
+                            data-bs-original-title="Delete Tambahan" data-modal-target="delete-modal"
+                            data-modal-toggle="delete-modal" data-id="{{ $add->id }}">
+                            <i class="cursor-pointer fas fa-trash text-xl text-red-600"></i>
+                        </button>
                     </div>
                 </div>
             @endforeach

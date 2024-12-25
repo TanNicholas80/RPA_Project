@@ -43,17 +43,11 @@
                             data-bs-original-title="Edit Produk">
                             <i class="cursor-pointer fa-solid fa-pen-to-square text-xl text-yellow-600"></i>
                         </button>
-                        <span>
-                            <form action="{{ route('produk.destroy', $pr->id) }}" method="POST"
-                                style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn bg-inherit" data-bs-toggle="tooltip"
-                                    data-bs-original-title="Delete Produk">
-                                    <i class="cursor-pointer fas fa-trash text-xl text-red-600"></i>
-                                </button>
-                            </form>
-                        </span>
+                        <button type="button" class="btn bg-inherit" data-bs-toggle="tooltip"
+                            data-bs-original-title="Delete Kategori" data-modal-target="delete-modal"
+                            data-modal-toggle="delete-modal" data-id="{{ $pr->id }}">
+                            <i class="cursor-pointer fas fa-trash text-xl text-red-600"></i>
+                        </button>
                     </div>
                 </div>
             @endforeach

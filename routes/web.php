@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
     // CRUD Portofolio
     Route::get('/portofolio', [PortofolioController::class, 'index'])->name('portofolio.index');
     Route::post('/portofolio', [PortofolioController::class, 'store'])->name('portofolio.store');
-    Route::patch('/portofolio/{id}', [PortofolioController::class, 'update'])->name('portofolio.update');
+    Route::put('/portofolio/{id}', [PortofolioController::class, 'update'])->name('portofolio.update');
     Route::delete('/portofolio/{id}', [PortofolioController::class, 'destroy'])->name('portofolio.destroy');
 });
 
