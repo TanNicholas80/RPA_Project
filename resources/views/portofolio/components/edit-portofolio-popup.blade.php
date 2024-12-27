@@ -25,17 +25,17 @@
                 @method('PUT')
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2">
-                        <label for="foto_portofolio"
+                        <label for="foto_portofolio_edit"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Foto /
                             Video</label>
                         <div class="relative inline-block">
                             <img id="preview-image" alt="Preview" class="w-full max-w-sm h-52 rounded-lg mb-5">
-                            <label for="foto_portofolio"
+                            <label for="foto_portofolio_edit"
                                 class="flex items-center px-4 py-2 bg-blue-100 text-blue-900 font-medium rounded-lg cursor-pointer hover:bg-blue-200">
                                 <i class="fa-solid fa-image mr-2"></i>
                                 Pilih Foto / Video
                             </label>
-                            <input type="file" name="foto_portofolio" id="foto_portofolio" accept="image/*"
+                            <input type="file" name="foto_portofolio" id="foto_portofolio_edit" accept="image/*"
                                 class="hidden">
                         </div>
                     </div>

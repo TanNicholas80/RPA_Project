@@ -5,49 +5,49 @@
         </h2>
     </x-slot>
 
-    <div class="py-12 flex justify-center items-center gap-10">
-        <div class="p-5 rounded-lg flex items-center" style="background-color: #B2935B;">
+    <div class="py-12 2xl:ml-0 md:ml-64 flex justify-center items-center gap-10 md:flex-wrap">
+        <div class="w-72 p-5 rounded-lg flex items-center" style="background-color: #B2935B;">
             <img src="{{ asset('assets/img/press_kit.png') }}" alt="product">
             <div class="flex flex-col ml-5">
                 @if ($totalProduk == 0)
-                <p class="text-2xl font-extrabold text-white">0</p>
+                <p class="2xl:text-2xl font-extrabold text-white text-xl">0</p>
                 @else
-                <p class="text-2xl font-extrabold text-white">{{ $totalProduk }}</p>
+                <p class="2xl:text-2xl font-extrabold text-white text-xl">{{ $totalProduk }}</p>
                 @endif
-                <p class="text-2xl font-extrabold text-white">PRODUK</p>
+                <p class="2xl:text-2xl font-extrabold text-white text-xl">PRODUK</p>
             </div>
         </div>
-        <div class="p-5 rounded-lg flex items-center" style="background-color: #B2935B;">
+        <div class="w-72 p-5 rounded-lg flex items-center" style="background-color: #B2935B;">
             <img src="{{ asset('assets/img/portofolio.png') }}" alt="portofolio">
             <div class="flex flex-col ml-5">
                 @if ($totalPortofolio == 0)
-                <p class="text-2xl font-extrabold text-white">0</p>
+                <p class="2xl:text-2xl font-extrabold text-white text-xl">0</p>
                 @else
-                <p class="text-2xl font-extrabold text-white">{{ $totalPortofolio }}</p>
+                <p class="2xl:text-2xl font-extrabold text-white text-xl">{{ $totalPortofolio }}</p>
                 @endif
-                <p class="text-2xl font-extrabold text-white">PORTOFOLIO</p>
+                <p class="2xl:text-2xl font-extrabold text-white text-xl">PORTOFOLIO</p>
             </div>
         </div>
-        <div class="p-5 rounded-lg flex items-center" style="background-color: #B2935B;">
+        <div class="w-72 p-5 rounded-lg flex items-center" style="background-color: #B2935B;">
             <img src="{{ asset('assets/img/add_on.png') }}" alt="addon">
             <div class="flex flex-col ml-5">
                 @if ($totalAddOn == 0)
-                <p class="text-2xl font-extrabold text-white">0</p>
+                <p class="2xl:text-2xl font-extrabold text-white text-xl">0</p>
                 @else
-                <p class="text-2xl font-extrabold text-white">{{ $totalAddOn }}</p>
+                <p class="2xl:text-2xl font-extrabold text-white text-xl">{{ $totalAddOn }}</p>
                 @endif
-                <p class="text-2xl font-extrabold text-white">TAMBAHAN</p>
+                <p class="2xl:text-2xl font-extrabold text-white text-xl">TAMBAHAN</p>
             </div>
         </div>
-        <div class="p-5 rounded-lg flex items-center" style="background-color: #B2935B;">
+        <div class="w-72 p-5 rounded-lg flex items-center" style="background-color: #B2935B;">
             <img src="{{ asset('assets/img/add_on.png') }}" alt="kategori">
             <div class="flex flex-col ml-5">
                 @if ($totalKategori == 0)
-                <p class="text-2xl font-extrabold text-white">0</p>
+                <p class="2xl:text-2xl font-extrabold text-white text-xl">0</p>
                 @else
-                <p class="text-2xl font-extrabold text-white">{{ $totalKategori }}</p>
+                <p class="2xl:text-2xl font-extrabold text-white text-xl">{{ $totalKategori }}</p>
                 @endif
-                <p class="text-2xl font-extrabold text-white">KATEGORI</p>
+                <p class="2xl:text-2xl font-extrabold text-white text-xl">KATEGORI</p>
             </div>
         </div>
     </div>

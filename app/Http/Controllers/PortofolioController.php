@@ -35,7 +35,6 @@ class PortofolioController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
         $file = $request->file('foto_portofolio');
         $folderId = "1Chxs7GTIjBETBE5YmiofuBR5ZBTr-v1M";
         $response = GoogleDriveService::uploadFile($file, $folderId);
@@ -72,7 +71,7 @@ class PortofolioController extends Controller
     public function update(Request $request, string $id)
     {
         $portofolio = Portofolio::find($id);
-        dd($request->all());
+        
         // Periksa apakah user memberikan input 'foto_portofolio'
         if ($request->hasFile('foto_portofolio')) {
             $fileId = $portofolio->foto_portofolio;
@@ -97,8 +96,6 @@ class PortofolioController extends Controller
             $file = $request->file('foto_portofolio');
             $response = GoogleDriveService::uploadFile($file, $folderId);
             $portofolio->foto_portofolio = $response->id; // Update ID file baru
-        } else {
-            Log::info('No file received');
         }
     
         // Update data lainnya
