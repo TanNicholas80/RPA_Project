@@ -20,11 +20,23 @@ class AddOnController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display Listing Add On From Searchbar 
      */
-    public function create()
+    public function search(Request $req)
     {
-        //
+        // Ambil query pencarian dari input
+        $query = $req->input('search');
+        $produks = Produk::all();
+
+        // Cari addon berdasarkan nama, harga, produk
+        $addon = AddOn::where('nama_addon', 'LIKE', "%{$query}%")
+        ->orWhere('harga_addon', 'LIKE', "%{$query}%")
+        ->orWhereHas('produk', function ($q) use ($query) {
+            $q->where('nama_produk', 'LIKE', "%{$query}%");
+        })
+        ->paginate(10);
+
+        return view('addon.index', compact('addon', 'produks', 'query'));
     }
 
     /**
@@ -41,22 +53,6 @@ class AddOnController extends Controller
 
         // Redirect kembali ke halaman kategori dengan pesan sukses
         return redirect()->route('addon.index')->with('success', 'AddOn berhasil ditambahkan!');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
     }
 
     /**
