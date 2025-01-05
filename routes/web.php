@@ -39,21 +39,25 @@ Route::middleware('auth')->group(function () {
     Route::post('/kategori', [KategoriController::class, 'store'])->name('kategori.store');
     Route::patch('/kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
     Route::delete('/kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
+    Route::get('/kategori/search', [KategoriController::class, 'search'])->name('kategori.search');
     // CRUD Produk
     Route::get('/produk', [ProdukController::class, 'index'])->name('produk.index');
     Route::post('/produk', [ProdukController::class, 'store'])->name('produk.store');
     Route::patch('/produk/{id}', [ProdukController::class, 'update'])->name('produk.update');
     Route::delete('/produk/{id}', [ProdukController::class, 'destroy'])->name('produk.destroy');
+    Route::get('/produk/search', [ProdukController::class, 'search'])->name('produk.search');
     // CRUD AddOn
     Route::get('/addon', [AddOnController::class, 'index'])->name('addon.index');
     Route::post('/addon', [AddOnController::class, 'store'])->name('addon.store');
     Route::patch('/addon/{id}', [AddOnController::class, 'update'])->name('addon.update');
     Route::delete('/addon/{id}', [AddOnController::class, 'destroy'])->name('addon.destroy');
+    Route::get('/addon/search', [AddOnController::class, 'search'])->name('addon.search');
     // CRUD Portofolio
     Route::get('/portofolio', [PortofolioController::class, 'index'])->name('portofolio.index');
     Route::post('/portofolio', [PortofolioController::class, 'store'])->name('portofolio.store');
-    Route::patch('/portofolio/{id}', [PortofolioController::class, 'update'])->name('portofolio.update');
+    Route::put('/portofolio/{id}', [PortofolioController::class, 'update'])->name('portofolio.update');
     Route::delete('/portofolio/{id}', [PortofolioController::class, 'destroy'])->name('portofolio.destroy');
+    Route::get('/portofolio/search', [PortofolioController::class, 'search'])->name('portofolio.search');
 });
 
 require __DIR__.'/auth.php';

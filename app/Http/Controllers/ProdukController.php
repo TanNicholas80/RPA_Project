@@ -20,11 +20,23 @@ class ProdukController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display Listing Add On From Searchbar 
      */
-    public function create()
+    public function search(Request $req)
     {
-        //
+        // Ambil query pencarian dari input
+        $query = $req->input('search');
+        $kategoris = Kategori::all();
+
+        // Cari Produk berdasarkan nama, harga, dan kategori
+        $produk = Produk::where('nama_produk', 'LIKE', "%{$query}%")
+            ->orWhere('harga_produk', 'LIKE', "%{$query}%")
+            ->orWhereHas('kategori', function ($q) use ($query) {
+                $q->where('nama_kategori', 'LIKE', "%{$query}%");
+            })
+            ->paginate(10);
+
+        return view('produk.index', compact('produk', 'kategoris', 'query'));
     }
 
     /**

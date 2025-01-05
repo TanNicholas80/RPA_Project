@@ -18,6 +18,20 @@ class KategoriController extends Controller
     }
 
     /**
+     * Display Listing Kategori From Searchbar 
+     */
+    public function search(Request $req)
+    {
+        // Ambil query pencarian dari input
+        $query = $req->input('search');
+
+        // Cari kategori berdasarkan nama
+        $kategori = Kategori::where('nama_kategori', 'LIKE', "%{$query}%")->paginate(10);
+
+        return view('kategori.index', compact('kategori', 'query'));
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)

@@ -10,7 +10,8 @@ class Portofolio extends Model
     use HasFactory;
 
     protected $fillable = [
-        'foto_portofolio'
+        'foto_portofolio',
+        'produk_id'
     ];
 
     public function produk() {
