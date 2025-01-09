@@ -6,6 +6,9 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PortofolioController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PortofolioUserController;
+use App\Http\Controllers\ProdukUserController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/portofoliouser', [PortofolioUserController::class, 'index'])->name('portofoliouser');
+Route::get('/produkuser', [ProdukUserController::class, 'index'])->name('produkuser');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 

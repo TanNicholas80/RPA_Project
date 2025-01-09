@@ -44,19 +44,36 @@ class PortofolioController extends Controller
      */
     public function store(Request $request)
     {
-        $file = $request->file('foto_portofolio');
-        $folderId = "1Chxs7GTIjBETBE5YmiofuBR5ZBTr-v1M";
-        $response = GoogleDriveService::uploadFile($file, $folderId);
-
-        // Simpan informasi ke database
-        Portofolio::create([
-            'foto_portofolio' => $response->id,
-            'produk_id' => $request->input('produk'),
-        ]);
-
-        // Redirect ke halaman lain atau tampilkan pesan sukses
+        // Cek apakah ada file yang diupload dengan nama 'foto_portofolio'
+        if ($request->hasFile('foto_portofolio')) {
+            // Ambil file yang diupload
+            $files = $request->file('foto_portofolio');
+    
+            // Pastikan $files adalah array, karena bisa jadi hanya ada satu file
+            if (!is_array($files)) {
+                $files = [$files]; // Jadikan array jika hanya satu file
+            }
+    
+            // Proses setiap file dalam array $files
+            foreach ($files as $file) {
+                // ID folder Google Drive tempat file akan disimpan
+                $folderId = "1Chxs7GTIjBETBE5YmiofuBR5ZBTr-v1M";
+    
+                // Panggil metode uploadFile untuk mengupload file ke Google Drive
+                $response = GoogleDriveService::uploadFile($file, $folderId);
+    
+                // Simpan informasi file yang telah diupload ke database
+                Portofolio::create([
+                    'foto_portofolio' => $response->id, // ID file yang diupload ke Google Drive
+                    'status_portofolio' => $request->input('status_portofolio'), // Status portofolio
+                    'produk_id' => $request->input('produk'), // ID produk yang terkait
+                ]);
+            }
+        }
+    
+        // Redirect ke halaman portofolio dengan pesan sukses
         return redirect()->route('portofolio.index')->with('success', 'Portofolio berhasil ditambahkan!');
-    }
+    }    
 
     /**
      * Update the specified resource in storage.
@@ -92,6 +109,7 @@ class PortofolioController extends Controller
         }
 
         // Update data lainnya
+        $portofolio->status_portofolio = $request->input('status_portofolio');
         $portofolio->produk_id = $request->input('produk');
         $portofolio->save();
 

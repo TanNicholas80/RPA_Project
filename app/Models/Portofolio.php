@@ -11,7 +11,8 @@ class Portofolio extends Model
 
     protected $fillable = [
         'foto_portofolio',
-        'produk_id'
+        'produk_id',
+        'status_portofolio'
     ];
 
     public function produk() {
