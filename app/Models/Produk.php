@@ -9,6 +9,7 @@ class Produk extends Model
 {
     use HasFactory;
 
+    // Menentukan kolom yang dapat diisi
     protected $fillable = [
         'nama_produk',
         'durasi_foto',
@@ -17,18 +18,24 @@ class Produk extends Model
         'cetak_foto',
         'harga_produk',
         'total_orang',
-        'kategori_id'
+        'kategori_id',
     ];
 
-    public function kategori() {
-        return $this->belongsTo(Kategori::class, 'kategori_id');
+    // Relasi Many-to-One dengan Kategori
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'kategori_id', 'id');
     }
 
-    public function addon() {
-        return $this->hasMany(AddOn::class, 'produk_id');
+    // Relasi One-to-Many dengan AddOn
+    public function addons()
+    {
+        return $this->hasMany(Addon::class, 'produk_id', 'id');
     }
 
-    public function portofolio() {
-        return $this->hasMany(Portofolio::class, 'produk_id');
+    // Relasi One-to-Many dengan Portofolio
+    public function portofolio()
+    {
+        return $this->hasMany(Portofolio::class, 'produk_id', 'id');
     }
 }

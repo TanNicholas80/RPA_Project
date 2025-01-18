@@ -14,16 +14,13 @@
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
         <script src="https://kit.fontawesome.com/de9d16bb0f.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+        <link href="https://cdn.jsdelivr.net/npm/flowbite@1.6.5/dist/flowbite.min.css" rel="stylesheet">
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased bg-white">
         <div class="min-h-screen bg-white">
-            @include('layouts.navigation')
-
-            @include('components.side-nav')
-
+            @include('users.components.navbar')
             {{-- <!-- Page Heading -->
             @if (isset($header))
                 <header>
@@ -33,10 +30,10 @@
                 </header>
             @endif --}}
 
-            
+            <script src="https://cdn.jsdelivr.net/npm/flowbite@1.6.5/dist/flowbite.min.js"></script>
             <!-- Page Content -->
             <main class="mt-14">
-                {{ $slot }}
+                @yield('content')
             </main>
         </div>
     </body>

@@ -14,5 +14,6 @@ class PortofolioUserController extends Controller
 
         // Kirim data ke view
         return view('user.portofoliouser.index', compact('kategoris'));
+        
     }
 }

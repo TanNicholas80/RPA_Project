@@ -9,11 +9,14 @@ class Kategori extends Model
 {
     use HasFactory;
 
+    // Menentukan kolom yang dapat diisi
     protected $fillable = [
-        'nama_kategori'
+        'nama_kategori',
     ];
 
-    public function produk() {
-        return $this->hasMany(Produk::class, 'kategori_id');
+    // Relasi One-to-Many dengan Produk
+    public function produk()
+    {
+        return $this->hasMany(Produk::class, 'kategori_id', 'id');
     }
 }
