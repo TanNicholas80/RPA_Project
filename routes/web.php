@@ -27,6 +27,9 @@ Route::get('/', function () {
 });
 Route::get('/portofoliouser', [PortofolioUserController::class, 'index'])->name('portofoliouser');
 Route::get('/produkuser', [ProdukUserController::class, 'index'])->name('produkuser');
+Route::get('/produkuser/{produk}', [ProdukUserController::class, 'show'])->name('produkuser.show');
+
+
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
