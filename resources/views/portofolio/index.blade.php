@@ -39,13 +39,28 @@
                 const modal = document.querySelector('#edit-modal');
                 const portoId = button.getAttribute('data-id');
                 const foto_porto = button.getAttribute('data-foto');
+                const status_porto = button.getAttribute('data-status');
                 const produk = button.getAttribute('data-produk');
                 const drive = 'https://drive.google.com/thumbnail?id=';
                 const size = '&sz=w1000-h800';
+                const drive_video = 'https://drive.google.com/file/d/';
+                const view = '/preview';
+                // Perbarui elemen pratinjau berdasarkan status
+                const previewImage = modal.querySelector('#preview-image');
+                const previewVideo = modal.querySelector('#preview-video');
 
                 // Isi input modal dengan data yang diambil dari button
                 modal.querySelector('form').setAttribute('action', `/portofolio/${portoId}`);
-                modal.querySelector('#preview-image').src = drive + foto_porto + size;
+                if (status_porto === 'foto') {
+                    previewImage.src = drive + foto_porto + size;
+                    previewImage.style.display = 'block';
+                    previewVideo.style.display = 'none';
+                } else if (status_porto === 'video') {
+                    previewVideo.src = drive_video + foto_porto + view;
+                    previewVideo.style.display = 'block';
+                    previewImage.style.display = 'none';
+                }
+                modal.querySelector('#pilih_status').value = status_porto;
                 modal.querySelector('#pilih_produk').value = produk;
             }
 
@@ -75,6 +90,42 @@
                 button.addEventListener('click', () => {
                     handleDeleteButton(button);
                 });
+            });
+
+            document.getElementById('foto_portofolio').addEventListener('change', function(event) {
+                const files = event.target.files; // Ambil file yang dipilih
+
+                // Elemen pratinjau
+                const previewImage = document.getElementById('preview-image-add');
+                const previewVideo = document.getElementById('preview-video-add');
+
+                // Reset pratinjau sebelumnya
+                previewImage.style.display = 'none';
+                previewVideo.style.display = 'none';
+                previewImage.src = '';
+                previewVideo.src = '';
+
+                if (files.length > 0) {
+                    const file = files[0]; // Ambil file pertama
+
+                    if (file.type.startsWith('image/')) {
+                        // Jika file adalah gambar
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            previewImage.src = e.target.result; // Setel sumber gambar
+                            previewImage.style.display = 'block'; // Tampilkan elemen gambar
+                        };
+                        reader.readAsDataURL(file); // Baca file sebagai Data URL
+                    } else if (file.type.startsWith('video/')) {
+                        // Jika file adalah video
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            previewVideo.src = e.target.result; // Setel sumber video
+                            previewVideo.style.display = 'block'; // Tampilkan elemen video
+                        };
+                        reader.readAsDataURL(file); // Baca file sebagai Data URL
+                    }
+                }
             });
 
             // Panggil fungsi showSuccessAlert jika ada pesan sukses

@@ -30,14 +30,26 @@
                             Video</label>
                         <div class="relative inline-block">
                             <img id="preview-image" alt="Preview" class="w-full max-w-sm h-52 rounded-lg mb-5">
+                            <iframe id="preview-video" title="Drive Video" class="w-full max-w-sm h-52 rounded-lg mb-5" allowfullscreen></iframe>
                             <label for="foto_portofolio_edit"
                                 class="flex items-center px-4 py-2 bg-blue-100 text-blue-900 font-medium rounded-lg cursor-pointer hover:bg-blue-200">
                                 <i class="fa-solid fa-image mr-2"></i>
                                 Pilih Foto / Video
                             </label>
-                            <input type="file" name="foto_portofolio" id="foto_portofolio_edit" accept="image/*"
+                            <input type="file" name="foto_portofolio" id="foto_portofolio_edit" accept="image/*,video/*"
                                 class="hidden">
                         </div>
+                    </div>
+                    <div class="col-span-2">
+                        <label for="status_portofolio"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Portofolio</label>
+
+                        <select id="status_portofolio" name="status_portofolio"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <option id="pilih_status" selected>Pilih Status</option>
+                            <option value="foto">Foto</option>
+                            <option value="video">Video</option>
+                        </select>
                     </div>
                     <div class="col-span-2">
                         <label for="produk"

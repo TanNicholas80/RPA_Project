@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('portofolios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kategori_id')->constrained('kategoris')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('produk_id')->constrained('produks')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('foto_portofolio');
+            $table->enum('status_portofolio', ['foto', 'video']);
             $table->timestamps();
         });
     }
