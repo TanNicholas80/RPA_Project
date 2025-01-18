@@ -56,11 +56,8 @@ class PortofolioController extends Controller
     
             // Proses setiap file dalam array $files
             foreach ($files as $file) {
-                // ID folder Google Drive tempat file akan disimpan
-                $folderId = "1Chxs7GTIjBETBE5YmiofuBR5ZBTr-v1M";
-    
                 // Panggil metode uploadFile untuk mengupload file ke Google Drive
-                $response = GoogleDriveService::uploadFile($file, $folderId);
+                $response = GoogleDriveService::uploadFile($file);
     
                 // Simpan informasi file yang telah diupload ke database
                 Portofolio::create([
@@ -94,7 +91,7 @@ class PortofolioController extends Controller
 
             // Hapus file lama dari Google Drive
             $fileName = $metadata['name'];
-            $path = "RPA_Photo/$fileName";
+            $path = "RPA_Photo_Video/$fileName";
             $response = GoogleDriveService::delete($path);
 
             if (!$response) {
@@ -102,9 +99,8 @@ class PortofolioController extends Controller
             }
 
             // Upload file baru ke Google Drive
-            $folderId = "1Chxs7GTIjBETBE5YmiofuBR5ZBTr-v1M";
             $file = $request->file('foto_portofolio');
-            $response = GoogleDriveService::uploadFile($file, $folderId);
+            $response = GoogleDriveService::uploadFile($file);
             $portofolio->foto_portofolio = $response->id; // Update ID file baru
         }
 
@@ -130,7 +126,7 @@ class PortofolioController extends Controller
         }
 
         $fileName = $metadata['name'];
-        $path = "RPA_Photo/$fileName";
+        $path = "RPA_Photo_Video/$fileName";
         $response = Storage::disk('google')->delete($path);
 
         if (!$response) {
