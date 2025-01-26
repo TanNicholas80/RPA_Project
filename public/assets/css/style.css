@@ -94,3 +94,28 @@
 .card-about:hover .icon-about {
     background-color: #764C31;
 }
+.kategori-container::-webkit-scrollbar {
+    display: none;
+}
+
+.kategori-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    cursor: grab;
+    scroll-behavior: smooth;
+}
+
+.kategori-container:active {
+    cursor: grabbing;
+}
+.photo-item {
+    cursor: pointer;
+}
+#modal {
+    display: none; /* Memastikan modal disembunyikan */
+    /* ... tambahkan gaya lainnya */
+}
+
+#modal.show {
+    display: flex; /* Modal hanya tampil saat class 'show' ditambahkan */
+}

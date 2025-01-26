@@ -1,7 +1,7 @@
 <nav class="bg-white border-gray-200 dark:bg-gray-900">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" class="h-8">
+        <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse ml-12">
+            <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" class="h-14">
         </a>
         <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             @if (Route::has('login'))

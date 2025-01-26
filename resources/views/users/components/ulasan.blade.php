@@ -166,12 +166,7 @@ Weding atau preweed bisa pakai jasa ini,  hasilnya Bagus,  detail gambarnya dan 
       </div>
     </div>
   </section>
-  <div class="swiper-pagination"></div>
-    <!-- Navigation Buttons -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-</div>
-</section>
+
 
 
 <script>
