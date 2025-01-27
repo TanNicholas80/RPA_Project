@@ -140,5 +140,5 @@
 }
 
 
-</script>s
+</script>
 @endsection
