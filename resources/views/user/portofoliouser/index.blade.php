@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('content')
-    <div class="mt-6 px-4">
+    <div class="mt-6 container mx-auto px-4 md:px-8 max-w-screen-l">
         <!-- Header -->
         <div class="text-left">
             <h1 class="text-4xl font-bold text-gray-800">Portofolio</h1>
@@ -40,14 +40,21 @@
         </div>
 
         <!-- Portfolio Items -->
-        <div id="containerFoto" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+        <div id="containerFoto" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+
             <!-- Data Foto -->
             @foreach ($kategoris as $kategori)
                 @foreach ($kategori->produk as $produk)
                     @foreach ($produk->portofolio->where('status_portofolio', 'foto') as $portofolio)
-                        <div class="rounded shadow-lg">
+                        <div class="rounded-2xl shadow-lg transform transition-all hover:bg-[#FFFBF4] hover:border-[#764C31] hover:border-2 hover:scale-105 cursor-pointer"
+                            onclick="openModal('{{ $portofolio->foto_portofolio }}')">
                             <img src="https://drive.google.com/thumbnail?id={{ $portofolio->foto_portofolio }}&sz=w1000-h800"
-                                alt="{{ $produk->nama_produk }}" class="object-cover h-56 w-full">
+                                alt="{{ $produk->nama_produk }}" class="object-cover h-56 w-full rounded-t-2xl">
+                            <div class="p-4">
+                                <div class="text-sm bg-[#764C31] text-[#FFF6E4] px-3 py-1 rounded-full">
+                                    {{ $kategori->nama_kategori }}
+                                </div>
+                            </div>
                         </div>
                     @endforeach
                 @endforeach
@@ -68,6 +75,17 @@
                     @endforeach
                 @endforeach
             @endforeach
+        </div>
+
+        <!-- Modal for Enlarged Image -->
+        <div id="imageModal"
+            class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center hidden">
+            <button id="prevImage" class="absolute left-4 text-white text-3xl">&#10094;</button>
+            <div class="relative">
+                <img id="modalImage" class="max-w-full max-h-screen">
+                <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-2xl">&times;</button>
+            </div>
+            <button id="nextImage" class="absolute right-4 text-white text-3xl">&#10095;</button>
         </div>
     </div>
 
@@ -132,6 +150,125 @@
         kategoriFilters.addEventListener('wheel', (e) => {
             e.preventDefault(); // Mencegah scroll default (vertikal)
             kategoriFilters.scrollLeft += e.deltaY * 2; // Menggeser secara horizontal
+            tabFoto.classList.add('text-black', 'border-black');
+            tabVideo.classList.remove('text-black', 'border-black');
+        });
+
+        // Event listener untuk tab Video
+        tabVideo.addEventListener('click', () => {
+            containerFoto.classList.add('hidden');
+            containerVideo.classList.remove('hidden');
+            tabVideo.classList.add('text-black', 'border-black');
+            tabFoto.classList.remove('text-black', 'border-black');
+        });
+
+        // Event Listener untuk mousedown (memulai drag)
+        kategoriFilters.addEventListener('mousedown', (e) => {
+            isDown = true;
+            kategoriFilters.classList.add('active');
+            startX = e.pageX - kategoriFilters.offsetLeft;
+            scrollLeft = kategoriFilters.scrollLeft;
+        });
+
+        // Event Listener untuk mouseleave (keluar dari elemen)
+        kategoriFilters.addEventListener('mouseleave', () => {
+            isDown = false;
+            kategoriFilters.classList.remove('active');
+        });
+
+        // Event Listener untuk mouseup (mengakhiri drag)
+        kategoriFilters.addEventListener('mouseup', () => {
+            isDown = false;
+            kategoriFilters.classList.remove('active');
+        });
+
+        // Event Listener untuk mousemove (menggulung saat drag)
+        kategoriFilters.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - kategoriFilters.offsetLeft;
+            const walk = (x - startX) * 2;
+            kategoriFilters.scrollLeft = scrollLeft - walk;
+        });
+
+        // Event Listener untuk scroll horizontal menggunakan roda mouse
+        kategoriFilters.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            kategoriFilters.scrollLeft += e.deltaY * 2;
+        });
+
+        // Function to render portfolio
+        function renderPortofolio(fotos) {
+            containerFoto.innerHTML = '';
+
+            if (fotos.length > 0) {
+                fotos.forEach(foto => {
+                    const div = document.createElement('div');
+                    div.classList.add('rounded-xl', 'shadow-lg', 'overflow-hidden', 'bg-white', 'hover:shadow-2xl',
+                        'transition-all', 'cursor-pointer');
+                    div.setAttribute('onclick', `openModal('${foto.foto_portofolio}')`);
+
+                    const img = document.createElement('img');
+                    img.src = `https://drive.google.com/thumbnail?id=${foto.foto_portofolio}&sz=w1000-h800`;
+                    img.alt = foto.nama_produk;
+                    img.classList.add('object-cover', 'h-56', 'w-full');
+
+                    const span = document.createElement('span');
+                    span.classList.add('text-sm', 'bg-[#764C31]', 'text-[#FFF6E4]', 'px-3', 'py-1', 'rounded-full');
+                    span.innerText = foto.kategori;
+
+                    const p = document.createElement('div');
+                    p.classList.add('p-4', 'flex', 'items-center', 'justify-between');
+                    p.appendChild(span);
+
+                    div.appendChild(img);
+                    div.appendChild(p);
+
+                    containerFoto.appendChild(div);
+                });
+            } else {
+                containerFoto.innerHTML =
+                    '<p class="text-center text-gray-500 w-full">No portfolio items found for this category.</p>';
+            }
+        }
+
+        const images = [];
+        let currentIndex = 0;
+
+        function openModal(imageUrl) {
+            images.push(imageUrl);
+            currentIndex = images.indexOf(imageUrl);
+            updateModalImage();
+            document.getElementById('imageModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').classList.add('hidden');
+        }
+
+        function updateModalImage() {
+            document.getElementById('modalImage').src =
+                `https://drive.google.com/thumbnail?id=${images[currentIndex]}&sz=w1000-h800`;
+        }
+
+        document.getElementById('prevImage').addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+            updateModalImage();
+        });
+
+        document.getElementById('nextImage').addEventListener('click', () => {
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            updateModalImage();
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft') {
+                document.getElementById('prevImage').click();
+            } else if (event.key === 'ArrowRight') {
+                document.getElementById('nextImage').click();
+            } else if (event.key === 'Escape') {
+                closeModal();
+            }
         });
     </script>
 @endsection

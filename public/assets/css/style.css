@@ -4,13 +4,13 @@
 }
 
 .nav_hover:hover {
-    background-color: #F9EED8;
+    background-color: #f9eed8;
 }
 
 /* Animasi Kartu Kontak Kami */
 .social-card:hover {
     background-color: white;
-    border: 2px solid #764C31; /* hover:border-gray-400 */
+    border: 2px solid #764c31; /* hover:border-gray-400 */
 }
 
 .social-card:hover .username {
@@ -69,7 +69,7 @@
 }
 
 .card-product:hover {
-    transform: scale(1.10);
+    transform: scale(1.1);
     filter: brightness(1.2); /* Menambah kecerahan card */
 }
 
@@ -79,7 +79,7 @@
 
 /* About Me Style Card */
 .card-about {
-    border: 1px solid #3E3A3340;
+    border: 1px solid #3e3a3340;
     transition: background-color 0.3s ease-in-out;
 }
 
@@ -88,11 +88,11 @@
 }
 
 .card-about:hover {
-    background-color: #FFF6E4;
+    background-color: #fff6e4;
 }
 
 .card-about:hover .icon-about {
-    background-color: #764C31;
+    background-color: #764c31;
 }
 
 .kategori-container::-webkit-scrollbar {
@@ -108,4 +108,16 @@
 
 .kategori-container:active {
     cursor: grabbing;
+}
+
+.photo-item {
+    cursor: pointer;
+}
+#modal {
+    display: none; /* Memastikan modal disembunyikan */
+    /* ... tambahkan gaya lainnya */
+}
+
+#modal.show {
+    display: flex; /* Modal hanya tampil saat class 'show' ditambahkan */
 }
