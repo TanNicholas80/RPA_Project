@@ -2,8 +2,6 @@
     <div class="flex flex-col gap-3 mb-8">
         <h2 class="text-4xl font-bold text-center">Ulasan dan Rating Pelanggan</h2>
     </div>
-    <div class="absolute top-0 left-0 h-full w-24 bg-gradient-to-r from-white to-transparent z-40"></div>
-    <div class="absolute top-0 right-0 h-full w-24 bg-gradient-to-l from-white to-transparent z-40"></div>
 
     <div class="swiper relative z-10">
         <div class="swiper-wrapper">

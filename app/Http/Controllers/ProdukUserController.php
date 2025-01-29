@@ -12,24 +12,38 @@ class ProdukUserController extends Controller
     /**
      * Tampilkan daftar kategori beserta produk, addons, dan portofolio
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Ambil kategori beserta produk dan addons
-        $kategoris = Kategori::with('produk.addons', 'produk.portofolio')->get();
+        // Ambil semua kategori untuk ditampilkan pada tombol filter
+        $kategoris = Kategori::all();
 
-        // Ambil portofolio yang memiliki status 'foto'
-        $portofolio = Portofolio::where('status_portofolio', 'foto')->get();
+        // Ambil kata kunci pencarian dari input
+        $search = $request->input('search');
 
-        // Pastikan $kategoris dan $portofolios tidak null sebelum dikirim ke view
-        if ($kategoris->isEmpty()) {
-            $kategoris = collect(); // Koleksi kosong untuk menghindari error
+        // Jika ada filter kategori
+        if ($request->filled('kategori_id')) {
+            $kategoriId = $request->input('kategori_id');
+            $filteredKategori = Kategori::with('produk.addons', 'produk.portofolio')
+                ->where('id', $kategoriId)
+                ->get();
+        } else {
+            // Jika tidak ada filter, ambil semua data
+            $filteredKategori = Kategori::with('produk.addons', 'produk.portofolio')->get();
         }
 
-        if ($portofolio->isEmpty()) {
-            $portofolio = collect(); // Koleksi kosong untuk menghindari error
+        // Jika ada pencarian
+        if ($search) {
+            // Lakukan pencarian pada kategori dan produk
+            $searchedProduct = Kategori::where('nama_kategori', 'LIKE', '%' . $search . '%')
+                ->orWhereHas('produk', function ($query) use ($search) {
+                    $query->where('nama_produk', 'LIKE', '%' . $search . '%');
+                })
+                ->get();
+            // Kirim variabel pencarian ke tampilan
+            return view('user.produkuser.index', compact('kategoris', 'searchedProduct'));
         }
 
-        return view('user.produkuser.index', compact('kategoris', 'portofolio'));
+        return view('user.produkuser.index', compact('kategoris', 'filteredKategori'));
     }
 
     /**

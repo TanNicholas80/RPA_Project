@@ -38,6 +38,7 @@
             function handleEditButton(button) {
                 const modal = document.querySelector('#edit-modal');
                 const portoId = button.getAttribute('data-id');
+                const nama_porto = button.getAttribute('data-nama-foto');
                 const foto_porto = button.getAttribute('data-foto');
                 const status_porto = button.getAttribute('data-status');
                 const produk = button.getAttribute('data-produk');
@@ -60,6 +61,7 @@
                     previewVideo.style.display = 'block';
                     previewImage.style.display = 'none';
                 }
+                modal.querySelector('#nama_portofolio').value = nama_porto;
                 modal.querySelector('#pilih_status').value = status_porto;
                 modal.querySelector('#pilih_produk').value = produk;
             }

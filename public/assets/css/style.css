@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 /* animasi login Mata */
 .toggle-icon {
     transition: opacity 0.3s ease-in-out;

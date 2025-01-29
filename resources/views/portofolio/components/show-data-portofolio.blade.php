@@ -44,7 +44,7 @@
                 </div>
                 <div class="absolute top-2.5 right-3">
                     <button class="btn bg-white/50" data-modal-target="edit-modal" data-modal-toggle="edit-modal"
-                        data-id="{{ $porto->id }}" data-foto="{{ $porto->foto_portofolio }}"
+                        data-id="{{ $porto->id }}" data-nama-foto="{{ $porto->nama_portofolio }}" data-foto="{{ $porto->foto_portofolio }}"
                         data-status="{{ $porto->status_portofolio }}" data-produk="{{ $porto->produk_id }}"
                         data-bs-toggle="tooltip" data-bs-original-title="Edit Portofolio">
                         <i class="cursor-pointer fa-solid fa-pen-to-square text-lg xl:text-xl text-yellow-600"></i>

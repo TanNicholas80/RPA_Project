@@ -13,7 +13,8 @@ class Portofolio extends Model
     protected $fillable = [
         'foto_portofolio',
         'produk_id',
-        'status_portofolio'
+        'status_portofolio',
+        'nama_portofolio'
     ];
 
     // Relasi Many-to-One dengan Produk

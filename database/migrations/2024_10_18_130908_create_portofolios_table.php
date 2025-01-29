@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('produk_id')->constrained('produks')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('foto_portofolio');
             $table->enum('status_portofolio', ['foto', 'video']);
+            $table->string('nama_portofolio');
             $table->timestamps();
         });
     }

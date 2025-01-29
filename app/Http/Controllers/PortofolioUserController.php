@@ -13,20 +13,39 @@ class PortofolioUserController extends Controller
      */
     public function index(Request $request)
     {
-        // Ambil kategori beserta relasi produk dan portofolio
-        $kategoris = Kategori::with(['produk.portofolio'])->get();
+        // Ambil semua kategori untuk ditampilkan pada tombol filter
+        $kategoris = Kategori::all();
 
-        // Ambil kategori_id dari query string untuk filter
-        $kategoriId = $request->input('kategori_id');
+        // Ambil kata kunci pencarian dari input
+        $search = $request->input('search');
 
-        // Filter portofolio berdasarkan kategori_id atau ambil semua jika kategori_id kosong
-        $portofolios = $kategoriId
-            ? Portofolio::whereHas('produk', function ($query) use ($kategoriId) {
-                $query->where('kategori_id', $kategoriId);
-            })->get()
-            : Portofolio::all();
+        // Jika ada filter kategori
+        if ($request->filled('kategori_id')) {
+            $kategoriId = $request->input('kategori_id');
+            $filteredKategori = Kategori::with(['produk.portofolio'])
+                ->where('id', $kategoriId)
+                ->get();
+        } else {
+            $filteredKategori = Kategori::with(['produk.portofolio'])->get();
+        }
+
+        // Query untuk pencarian
+        if ($search) {
+            $searchedPorto = Kategori::with(['produk.portofolio'])
+                ->where('nama_kategori', 'LIKE', '%' . $search . '%') // Pencarian pada kategori
+                ->orWhereHas('produk', function ($query) use ($search) {
+                    $query->where('nama_produk', 'LIKE', '%' . $search . '%') // Pencarian pada produk
+                        ->orWhereHas('portofolio', function ($query) use ($search) {
+                            $query->where('nama_portofolio', 'LIKE', '%' . $search . '%'); // Pencarian pada portofolio
+                        });
+                })
+                ->get();
+
+            // Kirim hasil pencarian ke view
+            return view('user.portofoliouser.index', compact('kategoris', 'searchedPorto'));
+        }
 
         // Kirim data ke view
-        return view('user.portofoliouser.index', compact('kategoris', 'portofolios', 'kategoriId'));
+        return view('user.portofoliouser.index', compact('kategoris', 'filteredKategori'));
     }
 }

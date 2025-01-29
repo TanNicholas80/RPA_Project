@@ -61,6 +61,7 @@ class PortofolioController extends Controller
     
                 // Simpan informasi file yang telah diupload ke database
                 Portofolio::create([
+                    'nama_portofolio' => $request->input('nama_portofolio'),
                     'foto_portofolio' => $response->id, // ID file yang diupload ke Google Drive
                     'status_portofolio' => $request->input('status_portofolio'), // Status portofolio
                     'produk_id' => $request->input('produk'), // ID produk yang terkait
@@ -105,6 +106,7 @@ class PortofolioController extends Controller
         }
 
         // Update data lainnya
+        $portofolio->nama_portofolio = $request->input('nama_portofolio');
         $portofolio->status_portofolio = $request->input('status_portofolio');
         $portofolio->produk_id = $request->input('produk');
         $portofolio->save();

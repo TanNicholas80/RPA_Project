@@ -75,7 +75,7 @@
                     {{ $produk->kategori->nama_kategori }}</p>
                 <h1 class="text-3xl text-gray-800 font-bold mt-4">{{ $produk->nama_produk }}</h1>
                 <p class="text-2xl text-gray-700 font-semibold mt-4">Rp
-                    {{ number_format($produk->harga ?? 0, 0, ',', '.') }}</p>
+                    {{ number_format($produk->harga_produk ?? 0, 0, ',', '.') }}</p>
                 <div class="mt-6">
                     @foreach (['detail' => 'Detail', 'aturan' => 'Aturan Pemesanan', 'tambahan' => 'Tambahan'] as $id => $title)
                         <div class="mb-4 border border-[#000000] rounded-[16px] max-w-[500px]">
