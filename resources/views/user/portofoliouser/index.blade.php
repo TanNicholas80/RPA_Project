@@ -81,7 +81,7 @@
                                 $hasPortofolio = true;
                             @endphp
                             <div class="rounded-2xl shadow-lg transform transition-all hover:bg-[#FFFBF4] hover:border-[#764C31] hover:border-2 hover:scale-105 cursor-pointer"
-                                onclick="openModal('{{ $portofolio->foto_portofolio }}')">
+                                onclick="openModal('{{ $portofolio->foto_portofolio }}' , '{{ $portofolio->nama_portofolio }}')">
                                 <img src="https://drive.google.com/thumbnail?id={{ $portofolio->foto_portofolio }}&sz=w1000-h800"
                                     alt="{{ $produk->nama_produk }}" class="object-cover h-56 w-full rounded-t-2xl">
                                 <div class="p-4 flex flex-col">
@@ -101,14 +101,15 @@
                             @php
                                 $hasPortofolio = true;
                             @endphp
-                            <div class="rounded-2xl shadow-lg transform transition-all hover:bg-[#FFFBF4] hover:border-[#764C31] hover:border-2 hover:scale-105 cursor-pointer"
-                                onclick="openModal('{{ $portofolio->foto_portofolio }}')">
+                            <div class="rounded-2xl shadow-lg transform transition-all hover:bg-[#FFFBF4] hover:border-[#764C31]/50 hover:border-2 hover:scale-105 cursor-pointer"
+                            onclick="openModal('{{ $portofolio->foto_portofolio }}' , '{{ $portofolio->nama_portofolio }}')">
                                 <img src="https://drive.google.com/thumbnail?id={{ $portofolio->foto_portofolio }}&sz=w1000-h800"
                                     alt="{{ $produk->nama_produk }}" class="object-cover h-56 w-full rounded-t-2xl">
                                 <div class="p-4 flex flex-col">
-                                    <div class="text-sm bg-[#DFBE91] text-black font-semibold px-3 py-1 mb-3 rounded-full">
-                                        {{ $kategori->nama_kategori }}
-                                    </div>
+                                <div class="text-sm bg-[#DFBE91] text-black font-semibold px-3 py-1 mb-3 rounded-full w-fit inline-block">
+    {{ $kategori->nama_kategori }}
+</div>
+
                                     <p class="text-xl">{{ $portofolio->nama_portofolio }}</p>
                                 </div>
                             </div>
@@ -129,66 +130,114 @@
         </div>
 
         <div id="containerVideo" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 hidden">
-            @php
-                $hasPortofolio = false;
-            @endphp
-            <!-- Data Video -->
-            @if (isset($searchedPorto))
-                @foreach ($searchedPorto as $kategori)
-                    @foreach ($kategori->produk as $produk)
-                        @foreach ($produk->portofolio->where('status_portofolio', 'video') as $portofolio)
-                            @php
-                                $hasPortofolio = true;
-                            @endphp
-                            <div class="rounded shadow-lg">
-                                <iframe class="w-full h-56 rounded"
-                                    src="https://drive.google.com/file/d/{{ $portofolio->foto_portofolio }}/preview"
-                                    allow="autoplay" allowfullscreen>
-                                </iframe>
+    @php
+        $hasPortofolio = false;
+    @endphp
+    <!-- Data Video -->
+    @if (isset($searchedPorto))
+        @foreach ($searchedPorto as $kategori)
+            @foreach ($kategori->produk as $produk)
+                @foreach ($produk->portofolio->where('status_portofolio', 'video') as $portofolio)
+                    @php
+                        $hasPortofolio = true;
+                    @endphp
+                    <div class="relative rounded-2xl shadow-lg transform transition-all hover:bg-[#FFFBF4] hover:border-[#764C31]/50 hover:border-2 hover:scale-105 cursor-pointer overflow-hidden"
+                    onclick="openModal('{{ $portofolio->foto_portofolio }}' , '{{ $portofolio->nama_portofolio }}')">    
+                    <iframe class="w-full h-56 rounded-t-2xl"
+                            src="https://drive.google.com/file/d/{{ $portofolio->foto_portofolio }}/preview"
+                            allow="autoplay" allowfullscreen>
+                        </iframe>
+                        <div class="p-4 flex flex-col">
+                            <div class="text-sm bg-[#DFBE91] text-black font-semibold px-3 py-1 mb-3 rounded-full w-fit inline-block">
+                                {{ $kategori->nama_kategori }}
                             </div>
-                        @endforeach
-                    @endforeach
-                @endforeach
-            @else
-                @foreach ($filteredKategori as $kategori)
-                    @foreach ($kategori->produk as $produk)
-                        @foreach ($produk->portofolio->where('status_portofolio', 'video') as $portofolio)
-                            @php
-                                $hasPortofolio = true;
-                            @endphp
-                            <div class="rounded shadow-lg">
-                                <iframe class="w-full h-56 rounded"
-                                    src="https://drive.google.com/file/d/{{ $portofolio->foto_portofolio }}/preview"
-                                    allow="autoplay" allowfullscreen>
-                                </iframe>
-                            </div>
-                        @endforeach
-                    @endforeach
-                @endforeach
-            @endif
-
-            @if (!$hasPortofolio)
-                <div class="col-span-full flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
-                    role="alert">
-                    <div class="text-2xl">
-                        <span class="font-bold">Info alert!</span>
-                        Kategori ini tidak memiliki video portofolio.
+                            <p class="text-xl">{{ $portofolio->nama_portofolio }}</p>
+                        </div>
                     </div>
-                </div>
-            @endif
-        </div>
+                @endforeach
+            @endforeach
+        @endforeach
+    @else
+        @foreach ($filteredKategori as $kategori)
+            @foreach ($kategori->produk as $produk)
+                @foreach ($produk->portofolio->where('status_portofolio', 'video') as $portofolio)
+                    @php
+                        $hasPortofolio = true;
+                    @endphp
+                    <div class="relative rounded-2xl shadow-lg transform transition-all hover:bg-[#FFFBF4] hover:border-[#764C31]/50 hover:border-2 hover:scale-105 cursor-pointer overflow-hidden"
+                   onclick="openModal('{{ $portofolio->foto_portofolio }}' , '{{ $portofolio->nama_portofolio }}')">    
+                    <iframe class="w-full h-56 rounded-t-2xl"
+                            src="https://drive.google.com/file/d/{{ $portofolio->foto_portofolio }}/preview"
+                            allow="autoplay" allowfullscreen>
+                        </iframe>
+                        <div class="p-4 flex flex-col">
+                            <div class="text-sm bg-[#DFBE91] text-black font-semibold px-3 py-1 mb-3 rounded-full w-fit inline-block">
+                                {{ $kategori->nama_kategori }}
+                            </div>
+                            <p class="text-xl">{{ $portofolio->nama_portofolio }}</p>
+                        </div>
+                    </div>
+                @endforeach
+            @endforeach
+        @endforeach
+    @endif
 
-        <!-- Modal for Enlarged Image -->
-        <div id="imageModal"
-            class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center hidden">
-            <button id="prevImage" class="absolute left-4 text-white text-3xl">&#10094;</button>
-            <div class="relative">
-                <img id="modalImage" class="max-w-full max-h-screen">
-                <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-2xl">&times;</button>
+    @if (!$hasPortofolio)
+        <div class="col-span-full flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+            role="alert">
+            <div class="text-2xl">
+                <span class="font-bold">Info alert!</span>
+                Kategori ini tidak memiliki video portofolio.
             </div>
-            <button id="nextImage" class="absolute right-4 text-white text-3xl">&#10095;</button>
         </div>
+    @endif
+</div>
+
+
+     <!-- Modal for Enlarged Image -->
+                
+     <div id="imageModal" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center hidden">
+                   <div class="absolute top-5 left-1/2 transform -translate-x-1/2  text-white text-lg px-4 py-2 rounded-md flex items-center gap-4">
+                            <p id="modalTitle" class="font-semibold text-2xl text-center mr-10"></p>
+                            <button onclick="closeModal()" class="text-white text-4xl font-bold">&times;</button>
+                        </div>
+     <div class="relative">
+                        <!-- Header (Title & Close) -->
+                        
+
+                        <!-- Image -->
+                        <img id="modalImage" class="max-w-[90vw] max-h-[80vh] object-contain rounded-lg shadow-xl">
+
+
+                        <!-- Category -->
+                        <p id="modalCategory" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white text-lg px-4 py-2 rounded-md"></p>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <button id="prevImage" class="absolute left-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10094;</button>
+                    <button id="nextImage" class="absolute right-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10095;</button>
+                </div>
+
+             <!-- Modal untuk Video -->
+<div id="videoModal" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center hidden">
+    <div class="absolute top-5 left-1/2 transform -translate-x-1/2 text-white text-lg px-4 py-2 rounded-md flex items-center gap-4">
+        <p id="modalTitle" class="font-semibold text-2xl text-center mr-10"></p>
+        <button onclick="closeModal()" class="text-white text-4xl font-bold">&times;</button>
     </div>
+    
+    <!-- Video Player -->
+    <video id="videoPlayer" class="max-w-[90vw] max-h-[80vh] rounded-lg shadow-xl" controls autoplay>
+        <source id="videoSource" src="" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <!-- Category -->
+    <p id="modalCategory" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white text-lg px-4 py-2 rounded-md"></p>
+    
+    <!-- Navigation Buttons -->
+    <button id="prevVideo" class="absolute left-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10094;</button>
+    <button id="nextVideo" class="absolute right-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10095;</button>
+</div>
 
     <script>
         const tabFoto = document.getElementById('tabFoto');
@@ -333,12 +382,17 @@
             }
         }
 
-        const images = [];
+        let images = [];
+        let titles = [];
+        let categories = [];
         let currentIndex = 0;
 
-        function openModal(imageUrl) {
-            images.push(imageUrl);
-            currentIndex = images.indexOf(imageUrl);
+        function openModal(imageUrl, title, category) {
+            images = Array.from(document.querySelectorAll('[onclick^="openModal"]'));
+            titles = images.map(img => img.getAttribute('onclick').match(/'([^']+)'/g)?.[1]?.replace(/'/g, '') || '');
+            categories = images.map(img => img.getAttribute('onclick').match(/'([^']+)'/g)?.[2]?.replace(/'/g, '') || '');
+            
+            currentIndex = images.findIndex(img => img.getAttribute('onclick').includes(imageUrl));
             updateModalImage();
             document.getElementById('imageModal').classList.remove('hidden');
         }
@@ -348,8 +402,12 @@
         }
 
         function updateModalImage() {
-            document.getElementById('modalImage').src =
-                `https://drive.google.com/thumbnail?id=${images[currentIndex]}&sz=w1000-h800`;
+            if (currentIndex < 0 || currentIndex >= images.length) return;
+            
+            const imageUrl = images[currentIndex].getAttribute('onclick').match(/'([^']+)'/)?.[1] || '';
+            document.getElementById('modalImage').src = `https://drive.google.com/thumbnail?id=${imageUrl}&sz=w1000-h800`;
+            document.getElementById('modalTitle').textContent = titles[currentIndex] || '';
+            document.getElementById('modalCategory').textContent = categories[currentIndex] || '';
         }
 
         document.getElementById('prevImage').addEventListener('click', () => {
@@ -371,5 +429,7 @@
                 closeModal();
             }
         });
+
+    
     </script>
 @endsection
