@@ -102,13 +102,14 @@
                                 $hasPortofolio = true;
                             @endphp
                             <div class="rounded-2xl shadow-lg transform transition-all hover:bg-[#FFFBF4] hover:border-[#764C31]/50 hover:border-2 hover:scale-105 cursor-pointer"
-                            onclick="openModal('{{ $portofolio->foto_portofolio }}' , '{{ $portofolio->nama_portofolio }}')">
+                                onclick="openModal('{{ $portofolio->foto_portofolio }}' , '{{ $portofolio->nama_portofolio }}')">
                                 <img src="https://drive.google.com/thumbnail?id={{ $portofolio->foto_portofolio }}&sz=w1000-h800"
                                     alt="{{ $produk->nama_produk }}" class="object-cover h-56 w-full rounded-t-2xl">
                                 <div class="p-4 flex flex-col">
-                                <div class="text-sm bg-[#DFBE91] text-black font-semibold px-3 py-1 mb-3 rounded-full w-fit inline-block">
-    {{ $kategori->nama_kategori }}
-</div>
+                                    <div
+                                        class="text-sm bg-[#DFBE91] text-black font-semibold px-3 py-1 mb-3 rounded-full w-fit inline-block">
+                                        {{ $kategori->nama_kategori }}
+                                    </div>
 
                                     <p class="text-xl">{{ $portofolio->nama_portofolio }}</p>
                                 </div>
@@ -130,306 +131,352 @@
         </div>
 
         <div id="containerVideo" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 hidden">
-    @php
-        $hasPortofolio = false;
-    @endphp
-    <!-- Data Video -->
-    @if (isset($searchedPorto))
-        @foreach ($searchedPorto as $kategori)
-            @foreach ($kategori->produk as $produk)
-                @foreach ($produk->portofolio->where('status_portofolio', 'video') as $portofolio)
-                    @php
-                        $hasPortofolio = true;
-                    @endphp
-                    <div class="relative rounded-2xl shadow-lg transform transition-all hover:bg-[#FFFBF4] hover:border-[#764C31]/50 hover:border-2 hover:scale-105 cursor-pointer overflow-hidden"
-                    onclick="openModal('{{ $portofolio->foto_portofolio }}' , '{{ $portofolio->nama_portofolio }}')">    
-                    <iframe class="w-full h-56 rounded-t-2xl"
-                            src="https://drive.google.com/file/d/{{ $portofolio->foto_portofolio }}/preview"
-                            allow="autoplay" allowfullscreen>
-                        </iframe>
-                        <div class="p-4 flex flex-col">
-                            <div class="text-sm bg-[#DFBE91] text-black font-semibold px-3 py-1 mb-3 rounded-full w-fit inline-block">
-                                {{ $kategori->nama_kategori }}
+            @php
+                $hasPortofolio = false;
+            @endphp
+            <!-- Data Video -->
+            @if (isset($searchedPorto))
+                @foreach ($searchedPorto as $kategori)
+                    @foreach ($kategori->produk as $produk)
+                        @foreach ($produk->portofolio->where('status_portofolio', 'video') as $portofolio)
+                            @php
+                                $hasPortofolio = true;
+                            @endphp
+                            <div class="relative rounded-2xl shadow-lg transform transition-all hover:bg-[#FFFBF4] hover:border-[#764C31]/50 hover:border-2 hover:scale-105 cursor-pointer overflow-hidden"
+                                onclick="openModalVideo('{{ $portofolio->foto_portofolio }}', '{{ $portofolio->nama_portofolio }}')">
+                                <iframe class="w-full h-56 rounded-t-2xl"
+                                    src="https://drive.google.com/file/d/{{ $portofolio->foto_portofolio }}/preview"
+                                    allow="autoplay" allowfullscreen>
+                                </iframe>
+                                <div class="p-4 flex flex-col">
+                                    <div
+                                        class="text-sm bg-[#DFBE91] text-black font-semibold px-3 py-1 mb-3 rounded-full w-fit inline-block">
+                                        {{ $kategori->nama_kategori }}
+                                    </div>
+                                    <p class="text-xl">{{ $portofolio->nama_portofolio }}</p>
+                                </div>
                             </div>
-                            <p class="text-xl">{{ $portofolio->nama_portofolio }}</p>
-                        </div>
-                    </div>
+                        @endforeach
+                    @endforeach
                 @endforeach
-            @endforeach
-        @endforeach
-    @else
-        @foreach ($filteredKategori as $kategori)
-            @foreach ($kategori->produk as $produk)
-                @foreach ($produk->portofolio->where('status_portofolio', 'video') as $portofolio)
-                    @php
-                        $hasPortofolio = true;
-                    @endphp
-                    <div class="relative rounded-2xl shadow-lg transform transition-all hover:bg-[#FFFBF4] hover:border-[#764C31]/50 hover:border-2 hover:scale-105 cursor-pointer overflow-hidden"
-                   onclick="openModal('{{ $portofolio->foto_portofolio }}' , '{{ $portofolio->nama_portofolio }}')">    
-                    <iframe class="w-full h-56 rounded-t-2xl"
-                            src="https://drive.google.com/file/d/{{ $portofolio->foto_portofolio }}/preview"
-                            allow="autoplay" allowfullscreen>
-                        </iframe>
-                        <div class="p-4 flex flex-col">
-                            <div class="text-sm bg-[#DFBE91] text-black font-semibold px-3 py-1 mb-3 rounded-full w-fit inline-block">
-                                {{ $kategori->nama_kategori }}
+            @else
+                @foreach ($filteredKategori as $kategori)
+                    @foreach ($kategori->produk as $produk)
+                        @foreach ($produk->portofolio->where('status_portofolio', 'video') as $portofolio)
+                            @php
+                                $hasPortofolio = true;
+                            @endphp
+                            <div class="relative rounded-2xl shadow-lg transform transition-all hover:bg-[#FFFBF4] hover:border-[#764C31]/50 hover:border-2 hover:scale-105 cursor-pointer overflow-hidden"
+                                onclick="openModalVideo('{{ $portofolio->foto_portofolio }}', '{{ $portofolio->nama_portofolio }}')">
+                                <iframe class="w-full h-56 rounded-t-2xl"
+                                    src="https://drive.google.com/file/d/{{ $portofolio->foto_portofolio }}/preview"
+                                    allow="autoplay" allowfullscreen>
+                                </iframe>
+                                <div class="p-4 flex flex-col">
+                                    <div
+                                        class="text-sm bg-[#DFBE91] text-black font-semibold px-3 py-1 mb-3 rounded-full w-fit inline-block">
+                                        {{ $kategori->nama_kategori }}
+                                    </div>
+                                    <p class="text-xl">{{ $portofolio->nama_portofolio }}</p>
+                                </div>
                             </div>
-                            <p class="text-xl">{{ $portofolio->nama_portofolio }}</p>
-                        </div>
-                    </div>
+                        @endforeach
+                    @endforeach
                 @endforeach
-            @endforeach
-        @endforeach
-    @endif
+            @endif
 
-    @if (!$hasPortofolio)
-        <div class="col-span-full flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
-            role="alert">
-            <div class="text-2xl">
-                <span class="font-bold">Info alert!</span>
-                Kategori ini tidak memiliki video portofolio.
-            </div>
-        </div>
-    @endif
-</div>
-
-
-     <!-- Modal for Enlarged Image -->
-                
-     <div id="imageModal" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center hidden">
-                   <div class="absolute top-5 left-1/2 transform -translate-x-1/2  text-white text-lg px-4 py-2 rounded-md flex items-center gap-4">
-                            <p id="modalTitle" class="font-semibold text-2xl text-center mr-10"></p>
-                            <button onclick="closeModal()" class="text-white text-4xl font-bold">&times;</button>
-                        </div>
-     <div class="relative">
-                        <!-- Header (Title & Close) -->
-                        
-
-                        <!-- Image -->
-                        <img id="modalImage" class="max-w-[90vw] max-h-[80vh] object-contain rounded-lg shadow-xl">
-
-
-                        <!-- Category -->
-                        <p id="modalCategory" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white text-lg px-4 py-2 rounded-md"></p>
+            @if (!$hasPortofolio)
+                <div class="col-span-full flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+                    role="alert">
+                    <div class="text-2xl">
+                        <span class="font-bold">Info alert!</span>
+                        Kategori ini tidak memiliki video portofolio.
                     </div>
-
-                    <!-- Navigation Buttons -->
-                    <button id="prevImage" class="absolute left-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10094;</button>
-                    <button id="nextImage" class="absolute right-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10095;</button>
                 </div>
+            @endif
+        </div>
 
-             <!-- Modal untuk Video -->
-<div id="videoModal" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center hidden">
-    <div class="absolute top-5 left-1/2 transform -translate-x-1/2 text-white text-lg px-4 py-2 rounded-md flex items-center gap-4">
-        <p id="modalTitle" class="font-semibold text-2xl text-center mr-10"></p>
-        <button onclick="closeModal()" class="text-white text-4xl font-bold">&times;</button>
-    </div>
-    
-    <!-- Video Player -->
-    <video id="videoPlayer" class="max-w-[90vw] max-h-[80vh] rounded-lg shadow-xl" controls autoplay>
-        <source id="videoSource" src="" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    
-    <!-- Category -->
-    <p id="modalCategory" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white text-lg px-4 py-2 rounded-md"></p>
-    
-    <!-- Navigation Buttons -->
-    <button id="prevVideo" class="absolute left-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10094;</button>
-    <button id="nextVideo" class="absolute right-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10095;</button>
-</div>
 
-    <script>
-        const tabFoto = document.getElementById('tabFoto');
-        const tabVideo = document.getElementById('tabVideo');
-        const containerFoto = document.getElementById('containerFoto');
-        const containerVideo = document.getElementById('containerVideo');
-        const kategoriFilters = document.getElementById('kategoriFilters');
-        let isDown = false;
-        let startX;
-        let scrollLeft;
+        <!-- Modal for Enlarged Image -->
 
-        // Event listener untuk tab Foto
-        tabFoto.addEventListener('click', () => {
-            containerFoto.classList.remove('hidden');
-            containerVideo.classList.add('hidden');
+        <div id="imageModal"
+            class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center hidden">
+            <div
+                class="absolute top-5 left-1/2 transform -translate-x-1/2  text-white text-lg px-4 py-2 rounded-md flex items-center gap-4">
+                <p id="modalTitle" class="font-semibold text-2xl text-center mr-10"></p>
+                <button onclick="closeModal()" class="text-white text-4xl font-bold">&times;</button>
+            </div>
+            <div class="relative">
+                <!-- Header (Title & Close) -->
 
-            tabFoto.classList.add('text-black', 'border-black');
-            tabVideo.classList.remove('text-black', 'border-black');
-        });
 
-        // Event listener untuk tab Video
-        tabVideo.addEventListener('click', () => {
-            containerFoto.classList.add('hidden');
-            containerVideo.classList.remove('hidden');
+                <!-- Image -->
+                <img id="modalImage" class="max-w-[90vw] max-h-[80vh] object-contain rounded-lg shadow-xl">
 
-            tabVideo.classList.add('text-black', 'border-black');
-            tabFoto.classList.remove('text-black', 'border-black');
-        });
 
-        // Event Listener untuk mousedown (memulai drag)
-        kategoriFilters.addEventListener('mousedown', (e) => {
-            isDown = true;
-            kategoriFilters.classList.add('active');
-            startX = e.pageX - kategoriFilters.offsetLeft;
-            scrollLeft = kategoriFilters.scrollLeft;
-        });
+                <!-- Category -->
+                <p id="modalCategory"
+                    class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white text-lg px-4 py-2 rounded-md">
+                </p>
+            </div>
 
-        // Event Listener untuk mouseleave (keluar dari elemen)
-        kategoriFilters.addEventListener('mouseleave', () => {
-            isDown = false;
-            kategoriFilters.classList.remove('active');
-        });
+            <!-- Navigation Buttons -->
+            <button id="prevImage"
+                class="absolute left-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10094;</button>
+            <button id="nextImage"
+                class="absolute right-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10095;</button>
+        </div>
 
-        // Event Listener untuk mouseup (mengakhiri drag)
-        kategoriFilters.addEventListener('mouseup', () => {
-            isDown = false;
-            kategoriFilters.classList.remove('active');
-        });
+        <!-- Modal untuk Video -->
+        <div id="videoModal"
+            class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center hidden">
+            <div
+                class="absolute top-5 left-1/2 transform -translate-x-1/2 text-white text-lg px-4 py-2 rounded-md flex items-center gap-4">
+                <p id="modalTitleVideo" class="font-semibold text-2xl text-center mr-10"></p>
+                <button onclick="closeModalVideo()" class="text-white text-4xl font-bold">&times;</button>
+            </div>
 
-        // Event Listener untuk mousemove (menggulung saat drag)
-        kategoriFilters.addEventListener('mousemove', (e) => {
-            if (!isDown) return; // Jika tidak sedang drag, hentikan
-            e.preventDefault();
-            const x = e.pageX - kategoriFilters.offsetLeft;
-            const walk = (x - startX) * 2; // Kecepatan scroll (2x lebih cepat)
-            kategoriFilters.scrollLeft = scrollLeft - walk;
-        });
+            <!-- Video Player -->
+            <iframe class="w-[80vw] h-[70vh] rounded-lg shadow-xl" id="videoSource" allow="autoplay"></iframe>
 
-        // Event Listener untuk scroll horizontal menggunakan roda mouse
-        kategoriFilters.addEventListener('wheel', (e) => {
-            e.preventDefault(); // Mencegah scroll default (vertikal)
-            kategoriFilters.scrollLeft += e.deltaY * 2; // Menggeser secara horizontal
-            tabFoto.classList.add('text-black', 'border-black');
-            tabVideo.classList.remove('text-black', 'border-black');
-        });
+            <!-- Category -->
+            <p id="modalCategoryVideo"
+                class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white text-lg px-4 py-2 rounded-md">
+            </p>
 
-        // Event listener untuk tab Video
-        tabVideo.addEventListener('click', () => {
-            containerFoto.classList.add('hidden');
-            containerVideo.classList.remove('hidden');
-            tabVideo.classList.add('text-black', 'border-black');
-            tabFoto.classList.remove('text-black', 'border-black');
-        });
+            <!-- Navigation Buttons -->
+            <button id="prevVideo"
+                class="absolute left-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10094;</button>
+            <button id="nextVideo"
+                class="absolute right-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10095;</button>
+        </div>
 
-        // Event Listener untuk mousedown (memulai drag)
-        kategoriFilters.addEventListener('mousedown', (e) => {
-            isDown = true;
-            kategoriFilters.classList.add('active');
-            startX = e.pageX - kategoriFilters.offsetLeft;
-            scrollLeft = kategoriFilters.scrollLeft;
-        });
+        <script>
+            const tabFoto = document.getElementById('tabFoto');
+            const tabVideo = document.getElementById('tabVideo');
+            const containerFoto = document.getElementById('containerFoto');
+            const containerVideo = document.getElementById('containerVideo');
+            const kategoriFilters = document.getElementById('kategoriFilters');
+            let isDown = false;
+            let startX;
+            let scrollLeft;
 
-        // Event Listener untuk mouseleave (keluar dari elemen)
-        kategoriFilters.addEventListener('mouseleave', () => {
-            isDown = false;
-            kategoriFilters.classList.remove('active');
-        });
+            // Event listener untuk tab Foto
+            tabFoto.addEventListener('click', () => {
+                containerFoto.classList.remove('hidden');
+                containerVideo.classList.add('hidden');
 
-        // Event Listener untuk mouseup (mengakhiri drag)
-        kategoriFilters.addEventListener('mouseup', () => {
-            isDown = false;
-            kategoriFilters.classList.remove('active');
-        });
+                tabFoto.classList.add('text-black', 'border-black');
+                tabVideo.classList.remove('text-black', 'border-black');
+            });
 
-        // Event Listener untuk mousemove (menggulung saat drag)
-        kategoriFilters.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - kategoriFilters.offsetLeft;
-            const walk = (x - startX) * 2;
-            kategoriFilters.scrollLeft = scrollLeft - walk;
-        });
+            // Event listener untuk tab Video
+            tabVideo.addEventListener('click', () => {
+                containerFoto.classList.add('hidden');
+                containerVideo.classList.remove('hidden');
 
-        // Event Listener untuk scroll horizontal menggunakan roda mouse
-        kategoriFilters.addEventListener('wheel', (e) => {
-            e.preventDefault();
-            kategoriFilters.scrollLeft += e.deltaY * 2;
-        });
+                tabVideo.classList.add('text-black', 'border-black');
+                tabFoto.classList.remove('text-black', 'border-black');
+            });
 
-        // Function to render portfolio
-        function renderPortofolio(fotos) {
-            containerFoto.innerHTML = '';
+            // Event Listener untuk mousedown (memulai drag)
+            kategoriFilters.addEventListener('mousedown', (e) => {
+                isDown = true;
+                kategoriFilters.classList.add('active');
+                startX = e.pageX - kategoriFilters.offsetLeft;
+                scrollLeft = kategoriFilters.scrollLeft;
+            });
 
-            if (fotos.length > 0) {
-                fotos.forEach(foto => {
-                    const div = document.createElement('div');
-                    div.classList.add('rounded-xl', 'shadow-lg', 'overflow-hidden', 'bg-white', 'hover:shadow-2xl',
-                        'transition-all', 'cursor-pointer');
-                    div.setAttribute('onclick', `openModal('${foto.foto_portofolio}')`);
+            // Event Listener untuk mouseleave (keluar dari elemen)
+            kategoriFilters.addEventListener('mouseleave', () => {
+                isDown = false;
+                kategoriFilters.classList.remove('active');
+            });
 
-                    const img = document.createElement('img');
-                    img.src = `https://drive.google.com/thumbnail?id=${foto.foto_portofolio}&sz=w1000-h800`;
-                    img.alt = foto.nama_produk;
-                    img.classList.add('object-cover', 'h-56', 'w-full');
+            // Event Listener untuk mouseup (mengakhiri drag)
+            kategoriFilters.addEventListener('mouseup', () => {
+                isDown = false;
+                kategoriFilters.classList.remove('active');
+            });
 
-                    const span = document.createElement('span');
-                    span.classList.add('text-sm', 'bg-[#764C31]', 'text-[#FFF6E4]', 'px-3', 'py-1', 'rounded-full');
-                    span.innerText = foto.kategori;
+            // Event Listener untuk mousemove (menggulung saat drag)
+            kategoriFilters.addEventListener('mousemove', (e) => {
+                if (!isDown) return; // Jika tidak sedang drag, hentikan
+                e.preventDefault();
+                const x = e.pageX - kategoriFilters.offsetLeft;
+                const walk = (x - startX) * 2; // Kecepatan scroll (2x lebih cepat)
+                kategoriFilters.scrollLeft = scrollLeft - walk;
+            });
 
-                    const p = document.createElement('div');
-                    p.classList.add('p-4', 'flex', 'items-center', 'justify-between');
-                    p.appendChild(span);
+            // Event Listener untuk scroll horizontal menggunakan roda mouse
+            kategoriFilters.addEventListener('wheel', (e) => {
+                e.preventDefault(); // Mencegah scroll default (vertikal)
+                kategoriFilters.scrollLeft += e.deltaY * 2; // Menggeser secara horizontal
+                tabFoto.classList.add('text-black', 'border-black');
+                tabVideo.classList.remove('text-black', 'border-black');
+            });
 
-                    div.appendChild(img);
-                    div.appendChild(p);
+            // Event listener untuk tab Video
+            tabVideo.addEventListener('click', () => {
+                containerFoto.classList.add('hidden');
+                containerVideo.classList.remove('hidden');
+                tabVideo.classList.add('text-black', 'border-black');
+                tabFoto.classList.remove('text-black', 'border-black');
+            });
 
-                    containerFoto.appendChild(div);
-                });
-            } else {
-                containerFoto.innerHTML =
-                    '<p class="text-center text-gray-500 w-full">No portfolio items found for this category.</p>';
+            // Event Listener untuk mousedown (memulai drag)
+            kategoriFilters.addEventListener('mousedown', (e) => {
+                isDown = true;
+                kategoriFilters.classList.add('active');
+                startX = e.pageX - kategoriFilters.offsetLeft;
+                scrollLeft = kategoriFilters.scrollLeft;
+            });
+
+            // Event Listener untuk mouseleave (keluar dari elemen)
+            kategoriFilters.addEventListener('mouseleave', () => {
+                isDown = false;
+                kategoriFilters.classList.remove('active');
+            });
+
+            // Event Listener untuk mouseup (mengakhiri drag)
+            kategoriFilters.addEventListener('mouseup', () => {
+                isDown = false;
+                kategoriFilters.classList.remove('active');
+            });
+
+            // Event Listener untuk mousemove (menggulung saat drag)
+            kategoriFilters.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - kategoriFilters.offsetLeft;
+                const walk = (x - startX) * 2;
+                kategoriFilters.scrollLeft = scrollLeft - walk;
+            });
+
+            // Event Listener untuk scroll horizontal menggunakan roda mouse
+            kategoriFilters.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                kategoriFilters.scrollLeft += e.deltaY * 2;
+            });
+
+            // Function to render portfolio
+            function renderPortofolio(fotos) {
+                containerFoto.innerHTML = '';
+
+                if (fotos.length > 0) {
+                    fotos.forEach(foto => {
+                        const div = document.createElement('div');
+                        div.classList.add('rounded-xl', 'shadow-lg', 'overflow-hidden', 'bg-white', 'hover:shadow-2xl',
+                            'transition-all', 'cursor-pointer');
+                        div.setAttribute('onclick', `openModal('${foto.foto_portofolio}')`);
+
+                        const img = document.createElement('img');
+                        img.src = `https://drive.google.com/thumbnail?id=${foto.foto_portofolio}&sz=w1000-h800`;
+                        img.alt = foto.nama_produk;
+                        img.classList.add('object-cover', 'h-56', 'w-full');
+
+                        const span = document.createElement('span');
+                        span.classList.add('text-sm', 'bg-[#764C31]', 'text-[#FFF6E4]', 'px-3', 'py-1', 'rounded-full');
+                        span.innerText = foto.kategori;
+
+                        const p = document.createElement('div');
+                        p.classList.add('p-4', 'flex', 'items-center', 'justify-between');
+                        p.appendChild(span);
+
+                        div.appendChild(img);
+                        div.appendChild(p);
+
+                        containerFoto.appendChild(div);
+                    });
+                } else {
+                    containerFoto.innerHTML =
+                        '<p class="text-center text-gray-500 w-full">No portfolio items found for this category.</p>';
+                }
             }
-        }
 
-        let images = [];
-        let titles = [];
-        let categories = [];
-        let currentIndex = 0;
+            let images = [];
+            let videos = [];
+            let titles = [];
+            let categories = [];
+            let currentIndex = 0;
 
-        function openModal(imageUrl, title, category) {
-            images = Array.from(document.querySelectorAll('[onclick^="openModal"]'));
-            titles = images.map(img => img.getAttribute('onclick').match(/'([^']+)'/g)?.[1]?.replace(/'/g, '') || '');
-            categories = images.map(img => img.getAttribute('onclick').match(/'([^']+)'/g)?.[2]?.replace(/'/g, '') || '');
-            
-            currentIndex = images.findIndex(img => img.getAttribute('onclick').includes(imageUrl));
-            updateModalImage();
-            document.getElementById('imageModal').classList.remove('hidden');
-        }
+            function openModal(imageUrl, title, category) {
+                images = Array.from(document.querySelectorAll('[onclick^="openModal"]'));
+                titles = images.map(img => img.getAttribute('onclick').match(/'([^']+)'/g)?.[1]?.replace(/'/g, '') || '');
+                categories = images.map(img => img.getAttribute('onclick').match(/'([^']+)'/g)?.[2]?.replace(/'/g, '') || '');
 
-        function closeModal() {
-            document.getElementById('imageModal').classList.add('hidden');
-        }
-
-        function updateModalImage() {
-            if (currentIndex < 0 || currentIndex >= images.length) return;
-            
-            const imageUrl = images[currentIndex].getAttribute('onclick').match(/'([^']+)'/)?.[1] || '';
-            document.getElementById('modalImage').src = `https://drive.google.com/thumbnail?id=${imageUrl}&sz=w1000-h800`;
-            document.getElementById('modalTitle').textContent = titles[currentIndex] || '';
-            document.getElementById('modalCategory').textContent = categories[currentIndex] || '';
-        }
-
-        document.getElementById('prevImage').addEventListener('click', () => {
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
-            updateModalImage();
-        });
-
-        document.getElementById('nextImage').addEventListener('click', () => {
-            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
-            updateModalImage();
-        });
-
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowLeft') {
-                document.getElementById('prevImage').click();
-            } else if (event.key === 'ArrowRight') {
-                document.getElementById('nextImage').click();
-            } else if (event.key === 'Escape') {
-                closeModal();
+                currentIndex = images.findIndex(img => img.getAttribute('onclick').includes(imageUrl));
+                updateModalImage();
+                document.getElementById('imageModal').classList.remove('hidden');
             }
-        });
 
-    
-    </script>
-@endsection
+            function openModalVideo(videoUrl, title, category) {
+                videos = Array.from(document.querySelectorAll('[onclick^="openModalVideo"]'));
+                titles = videos.map(vid => vid.getAttribute('onclick').match(/'([^']+)'/g)?.[1]?.replace(/'/g, '') || '');
+                categories = videos.map(vid => vid.getAttribute('onclick').match(/'([^']+)'/g)?.[2]?.replace(/'/g, '') || '');
+
+                currentIndex = videos.findIndex(vid => vid.getAttribute('onclick').includes(videoUrl));
+                updateModalVideo();
+                document.getElementById('videoModal').classList.remove('hidden');
+            }
+
+            function closeModal() {
+                document.getElementById('imageModal').classList.add('hidden');
+            }
+
+            function closeModalVideo() {
+                document.getElementById('videoModal').classList.add('hidden');
+            }
+
+            function updateModalImage() {
+                if (currentIndex < 0 || currentIndex >= images.length) return;
+
+                const imageUrl = images[currentIndex].getAttribute('onclick').match(/'([^']+)'/)?.[1] || '';
+                document.getElementById('modalImage').src = `https://drive.google.com/thumbnail?id=${imageUrl}&sz=w1000-h800`;
+                document.getElementById('modalTitle').textContent = titles[currentIndex] || '';
+                document.getElementById('modalCategory').textContent = categories[currentIndex] || '';
+            }
+
+            function updateModalVideo() {
+                if (currentIndex < 0 || currentIndex >= videos.length) return;
+
+                const videoUrl = videos[currentIndex].getAttribute('onclick').match(/'([^']+)'/)?.[1] || '';
+                document.getElementById('videoSource').src = `https://drive.google.com/file/d/${videoUrl}/preview`;
+                document.getElementById('modalTitleVideo').textContent = titles[currentIndex] || '';
+                document.getElementById('modalCategoryVideo').textContent = categories[currentIndex] || '';
+            }
+
+            document.getElementById('prevImage').addEventListener('click', () => {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+                updateModalImage();
+            });
+
+            document.getElementById('prevVideo').addEventListener('click', () => {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : videos.length - 1;
+                updateModalVideo();
+            });
+
+            document.getElementById('nextImage').addEventListener('click', () => {
+                currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+                updateModalImage();
+            });
+
+            document.getElementById('nextVideo').addEventListener('click', () => {
+                currentIndex = (currentIndex < videos.length - 1) ? currentIndex + 1 : 0;
+                updateModalVideo();
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowLeft') {
+                    document.getElementById('prevImage').click();
+                    document.getElementById('prevVideo').click();
+                } else if (event.key === 'ArrowRight') {
+                    document.getElementById('nextImage').click();
+                    document.getElementById('nextVideo').click();
+                } else if (event.key === 'Escape') {
+                    closeModal();
+                    closeModalVideo();
+                }
+            });
+        </script>
+    @endsection
