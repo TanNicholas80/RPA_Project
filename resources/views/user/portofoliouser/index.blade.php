@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('content')
-    <div class="mt-6 container mx-auto px-4 md:px-8 max-w-screen-l">
+    <div class="mt-6 container mx-auto mt-36 px-4 md:px-8 max-w-screen-l">
         <!-- Header -->
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
             <div class="text-left">
@@ -68,7 +68,8 @@
         </div>
 
         <!-- Portfolio Items -->
-        <div id="containerFoto" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+        <div id="containerFoto" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+
             @php
                 $hasPortofolio = false;
             @endphp
@@ -197,7 +198,7 @@
      <!-- Modal for Enlarged Image -->
                 
      <div id="imageModal" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center hidden">
-                   <div class="absolute top-5 left-1/2 transform -translate-x-1/2  text-white text-lg px-4 py-2 rounded-md flex items-center gap-4">
+                   <div class="absolute top-5 left-1/2 mt-36 transform -translate-x-1/2  text-white text-lg px-4 py-2 rounded-md flex items-center gap-4">
                             <p id="modalTitle" class="font-semibold text-2xl text-center mr-10"></p>
                             <button onclick="closeModal()" class="text-white text-4xl font-bold">&times;</button>
                         </div>
@@ -238,7 +239,7 @@
     <button id="prevVideo" class="absolute left-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10094;</button>
     <button id="nextVideo" class="absolute right-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10095;</button>
 </div>
-
+ @include('users.components.footer')
     <script>
         const tabFoto = document.getElementById('tabFoto');
         const tabVideo = document.getElementById('tabVideo');

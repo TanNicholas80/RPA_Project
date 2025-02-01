@@ -1,12 +1,12 @@
-<section id="tentangKami" class="flex flex-col gap-8 py-12">
+<section id="tentangKami" class="flex flex-col gap-8 py-12 px-4  mx-4 md:mx-8">
     <!-- Judul Section -->
     <div class="flex flex-col gap-3 justify-center items-center">
         <h2 class="text-4xl font-bold text-center">Tentang Kami</h2>
-        <p class="text-center text-lg font-semibold">Mengenal RPA Project Photo Studio</p>
+        <p class="text-center  text-xs md:text-lg font-semibold">Mengenal RPA Project Photo Studio</p>
     </div>
 
     <!-- Container Card -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
         <!-- Card 1: Siapa Kami -->
         <div class="card-about relative bg-white shadow-lg rounded-lg p-6">
             <!-- Bulatan di Atas -->

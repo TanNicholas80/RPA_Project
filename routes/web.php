@@ -25,6 +25,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/kontak', function () {
+    return view('contact');
+});
+Route::get('/tentangKami', function () {
+    return view('about');
+});
 Route::get('/portofoliouser', [PortofolioUserController::class, 'index'])->name('portofoliouser');
 
 Route::get('/produkuser', [ProdukUserController::class, 'index'])->name('produkuser');

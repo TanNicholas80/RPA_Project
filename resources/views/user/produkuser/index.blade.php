@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('content')
-    <div class="mt-6 container mx-auto px-4 md:px-8 max-w-screen-l">
+    <div class="mt-6 container mx-auto mt-36 px-4 md:px-8 max-w-screen-l">
         <div class="w-full">
             <!-- Header -->
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
@@ -135,7 +135,7 @@
             </div>
         </div>
     </div>
-
+    @include('users.components.footer')
     <script>
         const kategoriFilters = document.getElementById('kategoriFilters');
         let isDown = false;
