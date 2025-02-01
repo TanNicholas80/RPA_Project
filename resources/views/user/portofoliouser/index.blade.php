@@ -532,17 +532,18 @@
                 updateModalVideo();
             });
 
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'ArrowLeft') {
-                    document.getElementById('prevImage').click();
-                    document.getElementById('prevVideo').click();
-                } else if (event.key === 'ArrowRight') {
-                    document.getElementById('nextImage').click();
-                    document.getElementById('nextVideo').click();
-                } else if (event.key === 'Escape') {
-                    closeModal();
-                    closeModalVideo();
-                }
-            });
+            document.addEventListener('keydown', function(event) {
+    if (event.key === 'ArrowLeft') {
+        document.getElementById('prevImage').click();
+        document.getElementById('prevVideo').click();
+    } else if (event.key === 'ArrowRight') {
+        document.getElementById('nextImage').click();
+        document.getElementById('nextVideo').click();
+    } else if (event.key === 'Escape') {
+        closeModal();
+        closeModalVideo();
+    }
+});
+
         </script>
     @endsection
