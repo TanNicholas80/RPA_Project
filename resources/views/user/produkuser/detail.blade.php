@@ -1,51 +1,50 @@
 @extends('layouts.user')
 
 @section('content')
-    <div class="container mx-auto mt-10 px-4 md:px-0">
-        <!-- Breadcrumb -->
-        <div class="mb-6 text-gray-600">
-            <p class="text-sm">
-                <span class="text-gray-800 font-semibold">Produk</span> /
-                <span
-                    class="text-gray-800 font-semibold">{{ $produk->kategori->nama_kategori ?? 'Kategori Tidak Diketahui' }}</span>
-                /
-                <span class="text-gray-800 font-semibold">{{ $produk->nama_produk }}</span>
-            </p>
-        </div>
-        <div class="flex flex-col md:flex-row gap-6">
-            <!-- Foto Produk -->
-            <div class="md:w-1/2 relative group swiper-container"> <!-- Tambahkan class group untuk hover di container -->
-                <div class="swiper mySwiper2 mb-5">
-                    <div class="swiper-wrapper">
-                        @foreach ($produk->portofolio as $index => $foto)
-                            <div class="swiper-slide">
-                                <img src="https://drive.google.com/thumbnail?id={{ $foto->foto_portofolio }}&sz=w1920-h1080"
-                                    alt="Foto Produk {{ $produk->nama_produk }}"
-                                    class="w-full h-[450px] object-cover rounded-lg shadow-md">
-                            </div>
-                        @endforeach
-                    </div>
-                    <!-- Navigasi Panah (Akan tampil saat hover) -->
-                    <div
-                        class="swiper-button-next bg-[#764C31] text-[#FFF6E4] w-14 h-14 flex items-center justify-center rounded-full shadow-lg absolute top-1/2 right-4 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out transform hover:scale-110 hover:shadow-xl">
-                    </div>
-                    <div
-                        class="swiper-button-prev bg-[#764C31] text-[#FFF6E4] w-14 h-14 flex items-center justify-center rounded-full shadow-lg absolute top-1/2 left-4 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out transform hover:scale-110 hover:shadow-xl">
-                    </div>
-                </div>
+<div class="container mx-auto mt-28 px-4 md:px-10 lg:px-20">
+    <!-- Breadcrumb -->
+    <div class="mb-6 text-gray-600 text-sm">
+        <p>
+            <span class="text-gray-800 ">Produk</span> /
+            <span class="text-gray-800 ">{{ $produk->kategori->nama_kategori ?? 'Kategori Tidak Diketahui' }}</span> /
+            <span class="text-gray-800 ">{{ $produk->nama_produk }}</span>
+        </p>
+    </div>
 
-                <div thumbsSlider="" class="swiper mySwiper">
-                    <div class="swiper-wrapper">
-                        @foreach ($produk->portofolio as $index => $foto)
-                            <div class="swiper-slide">
-                                <img src="https://drive.google.com/thumbnail?id={{ $foto->foto_portofolio }}&sz=w1920-h1080"
-                                    alt="Foto Produk {{ $produk->nama_produk }}"
-                                    class="w-full h-[120px] object-cover rounded-lg shadow-md">
-                            </div>
-                        @endforeach
-                    </div>
+    <div class="flex flex-col md:flex-row gap-6">
+        <!-- Foto Produk -->
+        <div class="md:w-1/2 relative group">
+            <div class="swiper mySwiper2 mb-5 rounded-lg overflow-hidden shadow-lg">
+                <div class="swiper-wrapper">
+                    @foreach ($produk->portofolio as $index => $foto)
+                        <div class="swiper-slide">
+                            <img src="https://drive.google.com/thumbnail?id={{ $foto->foto_portofolio }}&sz=w1920-h1080"
+                                alt="Foto Produk {{ $produk->nama_produk }}"
+                                class="w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] object-cover rounded-lg">
+                        </div>
+                    @endforeach
+                </div>
+                
+                <!-- Navigasi Panah -->
+                <div class="swiper-button-next bg-[#764C31] text-white w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full shadow-lg absolute top-1/2 right-4 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out transform hover:scale-110 hover:shadow-xl"></div>
+                <div class="swiper-button-prev bg-[#764C31] text-white w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full shadow-lg absolute top-1/2 left-4 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out transform hover:scale-110 hover:shadow-xl"></div>
+            </div>
+
+            <!-- Thumbnail -->
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    @foreach ($produk->portofolio as $index => $foto)
+                        <div class="swiper-slide cursor-pointer thumbnail" data-index="{{ $index }}">
+                            <img id="thumbnail-{{ $index }}"
+                                src="https://drive.google.com/thumbnail?id={{ $foto->foto_portofolio }}&sz=w1920-h1080"
+                                alt="Thumbnail {{ $produk->nama_produk }}"
+                                class="w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] md:w-[120px] md:h-[120px] object-cover rounded-lg shadow-md transition-opacity duration-300 hover:opacity-80">
+                        </div>
+                    @endforeach
                 </div>
             </div>
+        </div>
+
 
             <!-- Informasi Produk di kanan -->
             <div class="md:w-1/3 md:pl-10">
@@ -60,7 +59,7 @@
                             <button
                                 class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none transition-all duration-300"
                                 onclick="toggleAccordion('{{ $id }}-{{ $produk->id }}')" aria-expanded="false">
-                                <h3 class="text-base font-medium">{{ $title }}</h3>
+                                <h3 class="text-base font-medium text-black">{{ $title }}</h3>
                                 <span id="arrow-{{ $id }}-{{ $produk->id }}"
                                     class="arrow-icon w-8 h-8 flex items-center justify-center bg-[#764C31] rounded-full transition-transform duration-300 ease-in-out">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#FFF6E4]" fill="none"
@@ -70,7 +69,7 @@
                                     </svg>
                                 </span>
                             </button>
-                            <hr class="border-t border-gray-300 max-w-[450px] mx-auto ">
+                            <hr class="border-t border-gray-300 max-w-[380px] mx-auto ">
                             <div id="{{ $id }}-{{ $produk->id }}"
                                 class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-white text-gray-700">
                                 @if ($id === 'detail')
@@ -111,26 +110,54 @@
             </div>
         </div>
     </div>
-
+ @include('users.components.footer')
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let swiper = new Swiper(".mySwiper", {
-                spaceBetween: 10,
-                slidesPerView: 4,
-                freeMode: true,
-                watchSlidesProgress: true,
-            });
-
-            let swiper2 = new Swiper(".mySwiper2", {
+        document.addEventListener('DOMContentLoaded', function () {
+            var swiperTop = new Swiper('.mySwiper2', {
                 spaceBetween: 10,
                 navigation: {
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
                 },
-                thumbs: {
-                    swiper: swiper,
-                },
+                loop: false,
+                on: {
+                    slideChange: function () {
+                        updateActiveThumbnail(swiperTop.activeIndex);
+                    }
+                }
             });
+
+            var swiperThumbs = new Swiper('.mySwiper', {
+                spaceBetween: 5,
+                slidesPerView: 4,
+                watchSlidesProgress: true,
+                watchSlidesVisibility: true,
+                slideToClickedSlide: true,
+                loop: false,
+            });
+
+            swiperTop.controller.control = swiperThumbs;
+            swiperThumbs.controller.control = swiperTop;
+
+            // Klik pada thumbnail untuk mengganti foto utama
+            document.querySelectorAll('.thumbnail').forEach((thumbnail, index) => {
+                thumbnail.addEventListener('click', function () {
+                    swiperTop.slideTo(index);
+                });
+            });
+
+            function updateActiveThumbnail(activeIndex) {
+                document.querySelectorAll('.thumbnail img').forEach((thumb, index) => {
+                    if (index === activeIndex) {
+                        thumb.classList.remove('opacity-50'); // Hilangkan efek transparan
+                    } else {
+                        thumb.classList.add('opacity-50'); // Tambahkan efek transparan
+                    }
+                });
+            }
+
+            // Set awal thumbnail pertama sebagai aktif
+            updateActiveThumbnail(0);
         });
 
         function toggleAccordion(id) {

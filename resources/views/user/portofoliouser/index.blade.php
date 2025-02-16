@@ -1,12 +1,13 @@
 @extends('layouts.user')
 
 @section('content')
-    <div class="mt-6 container mx-auto mt-36 px-4 md:px-8 max-w-screen-l">
+    <div class="mt-32 container mx-auto  px-4 md:px-8">
+    <div class="w-full">
         <!-- Header -->
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
             <div class="text-left">
                 <h1 class="text-4xl font-bold text-gray-800">Portofolio</h1>
-                <p class="text-gray-600 mt-2">Lihat hasil momen-momen indah yang telah kami abadikan untuk klien.</p>
+                <p class="text-gray-600 font-bold mt-2">Lihat hasil momen-momen indah yang telah kami abadikan untuk klien.</p>
             </div>
 
             <!-- Search Box -->
@@ -89,7 +90,7 @@
                                     <div class="text-sm bg-[#DFBE91] text-black font-semibold px-3 py-1 mb-3 rounded-full">
                                         {{ $kategori->nama_kategori }}
                                     </div>
-                                    <p class="text-xl">{{ $portofolio->nama_portofolio }}</p>
+                                    <p class="text-xl font-semibold text-black">
                                 </div>
                             </div>
                         @endforeach
@@ -103,14 +104,13 @@
                                 $hasPortofolio = true;
                             @endphp
                             <div class="rounded-2xl shadow-lg transform transition-all hover:bg-[#FFFBF4] hover:border-[#764C31]/50 hover:border-2 hover:scale-105 cursor-pointer"
-                                onclick="openModal('{{ $portofolio->foto_portofolio }}' , '{{ $portofolio->nama_portofolio }}')">
+                            onclick="openModal('{{ $portofolio->foto_portofolio }}' , '{{ $portofolio->nama_portofolio }}')">
                                 <img src="https://drive.google.com/thumbnail?id={{ $portofolio->foto_portofolio }}&sz=w1000-h800"
                                     alt="{{ $produk->nama_produk }}" class="object-cover h-56 w-full rounded-t-2xl">
                                 <div class="p-4 flex flex-col">
-                                    <div
-                                        class="text-sm bg-[#DFBE91] text-black font-semibold px-3 py-1 mb-3 rounded-full w-fit inline-block">
-                                        {{ $kategori->nama_kategori }}
-                                    </div>
+                                <div class="text-sm bg-[#DFBE91] text-black font-semibold px-3 py-1 mb-3 rounded-full w-fit inline-block">
+    {{ $kategori->nama_kategori }}
+</div>
 
                                     <p class="text-xl">{{ $portofolio->nama_portofolio }}</p>
                                 </div>
@@ -145,7 +145,7 @@
                             @endphp
                             <div class="relative rounded-2xl shadow-lg transform transition-all hover:bg-[#FFFBF4] hover:border-[#764C31]/50 hover:border-2 hover:scale-105 cursor-pointer overflow-hidden"
                                 onclick="openModalVideo('{{ $portofolio->foto_portofolio }}', '{{ $portofolio->nama_portofolio }}')">
-                                <iframe class="w-full h-56 rounded-t-2xl"
+                                <iframe class="h-56 w-full rounded-t-2xl"
                                     src="https://drive.google.com/file/d/{{ $portofolio->foto_portofolio }}/preview"
                                     allow="autoplay" allowfullscreen>
                                 </iframe>
@@ -186,124 +186,49 @@
                 @endforeach
             @endif
 
-<<<<<<< HEAD
-    @if (!$hasPortofolio)
-        <div class="col-span-full flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
-            role="alert">
-            <div class="text-2xl">
-                <span class="font-bold">Info alert!</span>
-                Kategori ini tidak memiliki video portofolio.
-            </div>
-        </div>
-    @endif
-</div>
-
-
-     <!-- Modal for Enlarged Image -->
-                
-     <div id="imageModal" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center hidden">
-                   <div class="absolute top-5 left-1/2 mt-36 transform -translate-x-1/2  text-white text-lg px-4 py-2 rounded-md flex items-center gap-4">
-                            <p id="modalTitle" class="font-semibold text-2xl text-center mr-10"></p>
-                            <button onclick="closeModal()" class="text-white text-4xl font-bold">&times;</button>
-                        </div>
-     <div class="relative">
-                        <!-- Header (Title & Close) -->
-                        
-
-                        <!-- Image -->
-                        <img id="modalImage" class="max-w-[90vw] max-h-[80vh] object-contain rounded-lg shadow-xl">
-
-
-                        <!-- Category -->
-                        <p id="modalCategory" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white text-lg px-4 py-2 rounded-md"></p>
-=======
             @if (!$hasPortofolio)
                 <div class="col-span-full flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
                     role="alert">
                     <div class="text-2xl">
                         <span class="font-bold">Info alert!</span>
                         Kategori ini tidak memiliki video portofolio.
->>>>>>> 085c87a356fe5fcff23f57136d5a031430fb6886
                     </div>
                 </div>
             @endif
         </div>
 
-<<<<<<< HEAD
-             <!-- Modal untuk Video -->
-<div id="videoModal" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center hidden">
-    <div class="absolute top-5 left-1/2 transform -translate-x-1/2 text-white text-lg px-4 py-2 rounded-md flex items-center gap-4">
+
+     <!-- Modal for Enlarged Image -->
+                
+    <div id="imageModal" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center hidden transition-opacity duration-300 ease-in-out">
+    <div class="absolute top-5 left-1/2 mt-52 md:mt-20 transform -translate-x-1/2 text-white text-lg px-4 py-2 rounded-md flex items-center gap-4">
         <p id="modalTitle" class="font-semibold text-2xl text-center mr-10"></p>
         <button onclick="closeModal()" class="text-white text-4xl font-bold">&times;</button>
     </div>
-    
-    <!-- Video Player -->
-    <video id="videoPlayer" class="max-w-[90vw] max-h-[80vh] rounded-lg shadow-xl" controls autoplay>
-        <source id="videoSource" src="" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    
-    <!-- Category -->
-    <p id="modalCategory" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white text-lg px-4 py-2 rounded-md"></p>
-    
+
+    <div class="relative mt-24  w-[90vw] max-w-3xl ">
+        <!-- Image -->
+        <img id="modalImage" class="w-full md:h-[500px] object-cover rounded-lg shadow-xl">
+
+        <!-- Category -->
+        <p id="modalCategory" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white text-lg px-4 py-2 rounded-md"></p>
+    </div>
+
     <!-- Navigation Buttons -->
-    <button id="prevVideo" class="absolute left-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10094;</button>
-    <button id="nextVideo" class="absolute right-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10095;</button>
+    <button id="prevImage" class="absolute left-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10094;</button>
+    <button id="nextImage" class="absolute right-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10095;</button>
 </div>
- @include('users.components.footer')
-    <script>
-        const tabFoto = document.getElementById('tabFoto');
-        const tabVideo = document.getElementById('tabVideo');
-        const containerFoto = document.getElementById('containerFoto');
-        const containerVideo = document.getElementById('containerVideo');
-        const kategoriFilters = document.getElementById('kategoriFilters');
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-=======
-
-        <!-- Modal for Enlarged Image -->
->>>>>>> 085c87a356fe5fcff23f57136d5a031430fb6886
-
-        <div id="imageModal"
-            class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center hidden">
-            <div
-                class="absolute top-5 left-1/2 transform -translate-x-1/2  text-white text-lg px-4 py-2 rounded-md flex items-center gap-4">
-                <p id="modalTitle" class="font-semibold text-2xl text-center mr-10"></p>
-                <button onclick="closeModal()" class="text-white text-4xl font-bold">&times;</button>
-            </div>
-            <div class="relative">
-                <!-- Header (Title & Close) -->
 
 
-                <!-- Image -->
-                <img id="modalImage" class="max-w-[90vw] max-h-[80vh] object-contain rounded-lg shadow-xl">
-
-
-                <!-- Category -->
-                <p id="modalCategory"
-                    class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white text-lg px-4 py-2 rounded-md">
-                </p>
-            </div>
-
-            <!-- Navigation Buttons -->
-            <button id="prevImage"
-                class="absolute left-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10094;</button>
-            <button id="nextImage"
-                class="absolute right-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10095;</button>
-        </div>
-
-        <!-- Modal untuk Video -->
-        <div id="videoModal"
-            class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center hidden">
-            <div
-                class="absolute top-5 left-1/2 transform -translate-x-1/2 text-white text-lg px-4 py-2 rounded-md flex items-center gap-4">
+             <!-- Modal untuk Video -->
+             <div id="videoModal" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center hidden">
+            <div class="absolute top-5 mt-36 md:mt-24 left-1/2 transform -translate-x-1/2 text-white text-lg px-4 py-2 rounded-md flex items-center gap-4">
                 <p id="modalTitleVideo" class="font-semibold text-2xl text-center mr-10"></p>
                 <button onclick="closeModalVideo()" class="text-white text-4xl font-bold">&times;</button>
             </div>
 
             <!-- Video Player -->
-            <iframe class="w-[80vw] h-[70vh] rounded-lg shadow-xl" id="videoSource" allow="autoplay"></iframe>
+            <iframe class="mt-24 w-[80vw] h-[35vh] md:h-[70vh] rounded-lg shadow-xl" id="videoSource" allow="autoplay"></iframe>
 
             <!-- Category -->
             <p id="modalCategoryVideo"
@@ -316,8 +241,10 @@
             <button id="nextVideo"
                 class="absolute right-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10095;</button>
         </div>
-
-        <script>
+</div>
+</div>
+ @include('users.components.footer')
+ <script>
             const tabFoto = document.getElementById('tabFoto');
             const tabVideo = document.getElementById('tabVideo');
             const containerFoto = document.getElementById('containerFoto');
@@ -532,18 +459,17 @@
                 updateModalVideo();
             });
 
-            document.addEventListener('keydown', function(event) {
-    if (event.key === 'ArrowLeft') {
-        document.getElementById('prevImage').click();
-        document.getElementById('prevVideo').click();
-    } else if (event.key === 'ArrowRight') {
-        document.getElementById('nextImage').click();
-        document.getElementById('nextVideo').click();
-    } else if (event.key === 'Escape') {
-        closeModal();
-        closeModalVideo();
-    }
-});
-
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowLeft') {
+                    document.getElementById('prevImage').click();
+                    document.getElementById('prevVideo').click();
+                } else if (event.key === 'ArrowRight') {
+                    document.getElementById('nextImage').click();
+                    document.getElementById('nextVideo').click();
+                } else if (event.key === 'Escape') {
+                    closeModal();
+                    closeModalVideo();
+                }
+            });
         </script>
-    @endsection
+@endsection

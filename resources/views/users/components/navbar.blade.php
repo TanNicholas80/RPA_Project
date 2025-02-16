@@ -25,10 +25,10 @@
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
             <ul class="flex flex-col md:flex-row md:space-x-8 font-medium p-4 md:p-0 border border-gray-100 rounded-lg bg-gray-50 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent">
                 <li><a href="/" class="block py-2 px-3 md:p-0 text-black hover:text-[#764C31] transition-colors duration-300">Beranda</a></li>
-                <li><a href="/tentangKami" class="block py-2 px-3 md:p-0 text-gray-500 hover:text-[#764C31] transition-colors duration-300">Tentang Kami</a></li>
+                <li><a href="/#tentangKami" class="block py-2 px-3 md:p-0 text-gray-500 hover:text-[#764C31] transition-colors duration-300">Tentang Kami</a></li>
                 <li><a href="/produkuser" class="block py-2 px-3 md:p-0 text-gray-500 hover:text-[#764C31] transition-colors duration-300">Produk</a></li>
                 <li><a href="/portofoliouser" class="block py-2 px-3 md:p-0 text-gray-500 hover:text-[#764C31] transition-colors duration-300">Portofolio</a></li>
-                <li><a href="/kontak" class="block py-2 px-3 md:p-0 text-gray-500 hover:text-[#764C31] transition-colors duration-300">Kontak</a></li>
+                <li><a href="/#kontak" class="block py-2 px-3 md:p-0 text-gray-500 hover:text-[#764C31] transition-colors duration-300">Kontak</a></li>
             </ul>
         </div>
     </div>

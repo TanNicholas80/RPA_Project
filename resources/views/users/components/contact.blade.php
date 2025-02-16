@@ -34,9 +34,9 @@
             <p class="text-gray-800 font-normal username">RPA project</p>
         </a>
     </div>
-    <div class="flex justify-center items-center mx-16">
+    <div class="mt-10 flex justify-center items-center px-4 sm:px-8 md:px-16">
     <a href="https://maps.app.goo.gl/e55Mkkohw97rF7uXA" target="_blank" class="relative map-link block max-w-screen-lg mx-auto">
-    <img src="{{ asset('assets/img/map.png') }}" alt="Maps" class="w-full h-64 md:h-80 lg:h-96 object-cover map-img">
+    <img src="{{ asset('assets/img/map.png') }}" alt="Maps" class="rounded-lg w-full h-64 md:h-80 lg:h-96 object-cover map-img">
     <div class="absolute inset-0 bg-[#FFF6E4]/50 rounded-lg map-overlay"></div>
     <div class="absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-2/2 text-center w-full px-4 map-text">
         <p class="font-semibold">Kunjungi Kami di RPA Project Photo Studio. Kami Tunggu Kedatangan Anda!</p>

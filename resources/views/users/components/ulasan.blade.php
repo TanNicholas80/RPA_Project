@@ -1,9 +1,11 @@
-<section id="ulasan" class="py-10 relative mx-20">
+<section id="ulasan" class="py-10 relative mx-10 md:mx-20">
     <div class="flex flex-col gap-3 mb-8">
-        <h2 class="text-4xl font-bold text-center">Ulasan dan Rating Pelanggan</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-center">Ulasan dan Rating Pelanggan</h2>
     </div>
 
     <div class="swiper relative z-10">
+    <div class="absolute top-0 left-0 h-full w-24 bg-gradient-to-r from-white to-transparent z-40"></div>
+    <div class="absolute top-0 right-0 h-full w-24 bg-gradient-to-l from-white to-transparent z-40"></div>
         <div class="swiper-wrapper">
             <!-- Card 1 -->
             <div class="swiper-slide p-4">
@@ -220,7 +222,7 @@
                             </path>
                         </svg>
                     </div>
-                    <p class="text-gray-700">
+                    <p class="text-gray-700 italic">
                         Kalau mau foto studio atau foto outdor.
                         Weding atau preweed bisa pakai jasa ini, hasilnya Bagus, detail gambarnya dan penataan gaya
                         rekomendasi banget, orangnya ramah dan harganya juga murah tapi hasilnya bisa di bandingkan
@@ -259,7 +261,7 @@
                             </path>
                         </svg>
                     </div>
-                    <p class="text-gray-700">
+                    <p class="text-gray-700 italic">
                         RPA project foto studio cocok banget buat kalian yang kepengen mengabadikan moment sama temen,
                         pacar atau saudara. kualitas yang bikin puas dengan harga yang pas. Ditambah pelayanannya yang
                         menyenangkan. Fyi fotografernya ramah dan sabar ngadepin cs yang agak ribet kayak gw haha.
@@ -297,7 +299,7 @@
                             </path>
                         </svg>
                     </div>
-                    <p class="text-gray-700">
+                    <p class="text-gray-700 italic">
                         fotographernya profesional banget, karyawanya humble banget, harga relatif murah, tersedia
                         berbagai paket menarik, chek langsung kelokasi bila teman2 ada yg tertarik
                     </p>
@@ -333,7 +335,7 @@
                             </path>
                         </svg>
                     </div>
-                    <p class="text-gray-700">
+                    <p class="text-gray-700 italic">
                         harga terjagkau. pelayanan sangat baik. banyak pilihan backgroud. hasil foto dan edit bagus.
                 </div>
             </div>
@@ -367,7 +369,7 @@
                             </path>
                         </svg>
                     </div>
-                    <p class="text-gray-700">
+                    <p class="text-gray-700 italic">
                         Pelayanan baik, ramah dan mengarahkan dgn sabar
                 </div>
             </div>
@@ -378,32 +380,36 @@
 
 
 <script>
-    const swiper = new Swiper('.swiper', {
-        loop: true,
-        slidesPerView: 1,
-        spaceBetween: 10,
-        autoplay: {
-            delay: 3000,
-            disableOnInteraction: false,
+const swiper = new Swiper('.swiper', {
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 10,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+    breakpoints: {
+        640: {
+            slidesPerView: 2,
+            spaceBetween: 10 // Menambah jarak antar kartu di Android
         },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+        768: {
+            slidesPerView: 2,
+            spaceBetween: 20
         },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
+        1024: {
+            slidesPerView: 4,
+            spaceBetween: 30
         },
-        breakpoints: {
-            640: {
-                slidesPerView: 1,
-            },
-            768: {
-                slidesPerView: 2,
-            },
-            1024: {
-                slidesPerView: 4,
-            },
-        },
-    });
+    },
+});
+
 </script>

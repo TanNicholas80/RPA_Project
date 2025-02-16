@@ -1,13 +1,13 @@
 @extends('layouts.user')
 
 @section('content')
-    <div class="mt-6 container mx-auto mt-36 px-4 md:px-8 max-w-screen-l">
+    <div class="mt-32 container mx-auto px-4 md:px-8 max-w-screen-l">
         <div class="w-full">
             <!-- Header -->
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
                 <div class="text-left">
                     <h1 class="text-4xl font-bold text-gray-800">Produk</h1>
-                    <p class="text-gray-600 mt-2">Lihat dan jelajahi paket kami untuk mengabadikan momen terbaik anda.</p>
+                    <p class="text-gray-600 font-bold mt-2">Lihat dan jelajahi paket kami untuk mengabadikan momen terbaik anda.</p>
                 </div>
 
                 <!-- Search Box -->
