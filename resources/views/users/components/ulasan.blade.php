@@ -399,15 +399,15 @@ const swiper = new Swiper('.swiper', {
     breakpoints: {
         640: {
             slidesPerView: 2,
-            spaceBetween: 10 // Menambah jarak antar kartu di Android
+            spaceBetween: 10, // Menambah jarak antar kartu di Android
         },
         768: {
             slidesPerView: 2,
-            spaceBetween: 20
+            spaceBetween: 20,
         },
         1024: {
             slidesPerView: 4,
-            spaceBetween: 30
+            spaceBetween: 30,
         },
     },
 });

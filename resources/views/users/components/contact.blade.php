@@ -5,10 +5,11 @@
             janji, kami siap membatu!</p>
     </div>
 
-    <div class="grid grid-cols-1 place-items-center gap-8 md:grid-cols-3">
+    <div class="grid grid-cols-1 place-items-center md:grid-cols-3">
+
         <!-- Instagram -->
         <a href="https://www.instagram.com/studiofotorpaproject"
-            class="w-60 h-40 rounded-lg flex flex-col items-center justify-center p-6 bg-yellow-50 shadow-md social-card"
+            class="w-60 h-40 rounded-lg flex flex-col items-center justify-center p-3 bg-yellow-50 shadow-md social-card"
             target="_blank">
             <div class="p-2 rounded-full mb-3 card-icon">
                 <img src="{{ asset('assets/img/ig.png') }}" alt="Instagram" class="w-20 h-20">
@@ -17,7 +18,7 @@
         </a>
         <!-- WhatsApp -->
         <a href="https://wa.me/6285641574777"
-            class="w-60 h-40 rounded-lg flex flex-col items-center justify-center p-6 bg-yellow-50 shadow-md social-card"
+            class="w-60 h-40 rounded-lg flex flex-col items-center justify-center p-3 bg-yellow-50 shadow-md social-card"
             target="_blank">
             <div class="p-2 rounded-full mb-3 card-icon">
                 <img src="{{ asset('assets/img/wa.png') }}" alt="WhatsApp" class="w-20 h-20">
@@ -26,7 +27,7 @@
         </a>
         <!-- Facebook -->
         <a href="https://www.facebook.com/RPAprojectFOTOVIDIO"
-            class="w-60 h-40 rounded-lg flex flex-col items-center justify-center p-6 bg-yellow-50 shadow-md social-card"
+            class="w-60 h-40 rounded-lg flex flex-col items-center justify-center p-3 bg-yellow-50 shadow-md social-card"
             target="_blank">
             <div class="p-2 rounded-full mb-3 card-icon">
                 <img src="{{ asset('assets/img/fb.png') }}" alt="Facebook" class="w-20 h-20">

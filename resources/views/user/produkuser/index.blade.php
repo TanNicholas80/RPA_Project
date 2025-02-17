@@ -135,6 +135,7 @@
             </div>
         </div>
     </div>
+</div>
     @include('users.components.footer')
     <script>
         const kategoriFilters = document.getElementById('kategoriFilters');
