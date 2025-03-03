@@ -1,49 +1,53 @@
 @extends('layouts.user')
 
 @section('content')
-<div class="container mx-auto mt-28 px-4 md:px-10 lg:px-20">
-    <!-- Breadcrumb -->
-    <div class="mb-6 text-gray-600 text-sm">
-        <p>
-            <span class="text-gray-800 ">Produk</span> /
-            <span class="text-gray-800 ">{{ $produk->kategori->nama_kategori ?? 'Kategori Tidak Diketahui' }}</span> /
-            <span class="text-gray-800 ">{{ $produk->nama_produk }}</span>
-        </p>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-6">
-        <!-- Foto Produk -->
-        <div class="md:w-1/2 relative group">
-            <div class="swiper mySwiper2 mb-5 rounded-lg overflow-hidden shadow-lg">
-                <div class="swiper-wrapper">
-                    @foreach ($produk->portofolio as $index => $foto)
-                        <div class="swiper-slide">
-                            <img src="https://drive.google.com/thumbnail?id={{ $foto->foto_portofolio }}&sz=w1920-h1080"
-                                alt="Foto Produk {{ $produk->nama_produk }}"
-                                class="w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] object-cover rounded-lg">
-                        </div>
-                    @endforeach
-                </div>
-                
-                <!-- Navigasi Panah -->
-                <div class="swiper-button-next bg-[#764C31] text-white w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full shadow-lg absolute top-1/2 right-4 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out transform hover:scale-110 hover:shadow-xl"></div>
-                <div class="swiper-button-prev bg-[#764C31] text-white w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full shadow-lg absolute top-1/2 left-4 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out transform hover:scale-110 hover:shadow-xl"></div>
-            </div>
-
-            <!-- Thumbnail -->
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    @foreach ($produk->portofolio as $index => $foto)
-                        <div class="swiper-slide cursor-pointer thumbnail" data-index="{{ $index }}">
-                            <img id="thumbnail-{{ $index }}"
-                                src="https://drive.google.com/thumbnail?id={{ $foto->foto_portofolio }}&sz=w1920-h1080"
-                                alt="Thumbnail {{ $produk->nama_produk }}"
-                                class="w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] md:w-[120px] md:h-[120px] object-cover rounded-lg shadow-md transition-opacity duration-300 hover:opacity-80">
-                        </div>
-                    @endforeach
-                </div>
-            </div>
+    <div class="container mx-auto mt-28 px-4 md:px-10 lg:px-20">
+        <!-- Breadcrumb -->
+        <div class="mb-6 text-gray-600 text-sm">
+            <p>
+                <span class="text-gray-800 ">Produk</span> /
+                <span class="text-gray-800 ">{{ $produk->kategori->nama_kategori ?? 'Kategori Tidak Diketahui' }}</span> /
+                <span class="text-gray-800 ">{{ $produk->nama_produk }}</span>
+            </p>
         </div>
+
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Foto Produk -->
+            <div class="md:w-1/2 relative group">
+                <div class="swiper mySwiper2 mb-5 rounded-lg overflow-hidden shadow-lg">
+                    <div class="swiper-wrapper">
+                        @foreach ($produk->portofolio as $index => $foto)
+                            <div class="swiper-slide">
+                                <img src="https://drive.google.com/thumbnail?id={{ $foto->foto_portofolio }}&sz=w1920-h1080"
+                                    alt="Foto Produk {{ $produk->nama_produk }}"
+                                    class="w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] object-cover rounded-lg">
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <!-- Navigasi Panah -->
+                    <div
+                        class="swiper-button-next bg-[#764C31] text-white w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full shadow-lg absolute top-1/2 right-4 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out transform hover:scale-110 hover:shadow-xl">
+                    </div>
+                    <div
+                        class="swiper-button-prev bg-[#764C31] text-white w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full shadow-lg absolute top-1/2 left-4 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out transform hover:scale-110 hover:shadow-xl">
+                    </div>
+                </div>
+
+                <!-- Thumbnail -->
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        @foreach ($produk->portofolio as $index => $foto)
+                            <div class="swiper-slide cursor-pointer thumbnail" data-index="{{ $index }}">
+                                <img id="thumbnail-{{ $index }}"
+                                    src="https://drive.google.com/thumbnail?id={{ $foto->foto_portofolio }}&sz=w1920-h1080"
+                                    alt="Thumbnail {{ $produk->nama_produk }}"
+                                    class="w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] md:w-[120px] md:h-[120px] object-cover rounded-lg shadow-md transition-opacity duration-300 hover:opacity-80">
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
 
 
             <!-- Informasi Produk di kanan -->
@@ -58,7 +62,8 @@
                         <div class="mb-4 border border-[#000000] rounded-[16px] max-w-[500px]">
                             <button
                                 class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none transition-all duration-300"
-                                onclick="toggleAccordion('{{ $id }}-{{ $produk->id }}')" aria-expanded="false">
+                                onclick="toggleAccordion('{{ $id }}-{{ $produk->id }}')"
+                                aria-expanded="false">
                                 <h3 class="text-base font-medium text-black">{{ $title }}</h3>
                                 <span id="arrow-{{ $id }}-{{ $produk->id }}"
                                     class="arrow-icon w-8 h-8 flex items-center justify-center bg-[#764C31] rounded-full transition-transform duration-300 ease-in-out">
@@ -81,7 +86,38 @@
                                         <li>Total Orang: {{ $produk->total_orang }} Orang</li>
                                     </ul>
                                 @elseif ($id === 'aturan')
-                                    <p class="py-4">Aturan pemesanan akan disesuaikan berdasarkan produk ini.</p>
+                                    <div class="py-4">
+                                        <div class="max-h-60 overflow-y-auto px-4">
+                                            <ul class="list-decimal pl-6 space-y-2">
+                                                <li>Mengisi formulir booking dan melakukan pembayaran DP sebesar 50% dari
+                                                    harga paket sebagai tanda jadi.</li>
+                                                <li>Setiap paket yang dipesan sudah termasuk 1 fotografer untuk 1 klien.
+                                                </li>
+                                                <li>Booking hanya diterima untuk jam yang sudah ditentukan dan wajib tepat
+                                                    waktu.</li>
+                                                <li>Durasi foto dihitung sejak sesi foto dimulai, dengan toleransi
+                                                    keterlambatan maksimal 15 menit dari jadwal booking.</li>
+                                                <li>Klien diperbolehkan mengganti dress code selama sesi berlangsung, namun
+                                                    waktu tetap berjalan sesuai durasi yang telah ditentukan.</li>
+                                                <li>Klien bebas memilih spot background yang tersedia di studio sesuai
+                                                    keinginan.</li>
+                                                <li>Semua file foto original akan dikirim dalam estimasi H+1 melalui Google
+                                                    Drive. Link Drive bersifat sementara dan hanya tersedia selama 1 bulan,
+                                                    sehingga klien wajib mengunduh semua file sebelum masa penyimpanan
+                                                    berakhir. Jika memungkinkan, file dapat langsung dicopy melalui kabel
+                                                    data pada hari H.</li>
+                                                <li>Klien bertanggung jawab memilih file yang akan diedit setelah menerima
+                                                    file di Drive. Editing hanya mencakup cropping dan penyesuaian tone
+                                                    warna sesuai dengan ciri khas studio RPA Project.</li>
+                                                <li>Estimasi waktu editing sekitar 1–2 minggu atau menyesuaikan antrean
+                                                    klien.</li>
+                                                <li>Pelunasan pembayaran wajib dilakukan maksimal pada hari H sebelum sesi
+                                                    berakhir.</li>
+                                                <li>Semua pembayaran akan hangus apabila terjadi pembatalan atau reschedule
+                                                    secara sepihak dari pihak klien.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 @elseif ($id === 'tambahan')
                                     <div class="py-4">
                                         @forelse ($produk->addons ?? [] as $addon)
@@ -110,10 +146,10 @@
             </div>
         </div>
     </div>
-</div>
-@include('users.components.footer')
+    </div>
+    @include('users.components.footer')
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             var swiperTop = new Swiper('.mySwiper2', {
                 spaceBetween: 10,
                 navigation: {
@@ -122,7 +158,7 @@
                 },
                 loop: false,
                 on: {
-                    slideChange: function () {
+                    slideChange: function() {
                         updateActiveThumbnail(swiperTop.activeIndex);
                     }
                 }
@@ -142,7 +178,7 @@
 
             // Klik pada thumbnail untuk mengganti foto utama
             document.querySelectorAll('.thumbnail').forEach((thumbnail, index) => {
-                thumbnail.addEventListener('click', function () {
+                thumbnail.addEventListener('click', function() {
                     swiperTop.slideTo(index);
                 });
             });

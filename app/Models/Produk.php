@@ -30,7 +30,7 @@ class Produk extends Model
     // Relasi One-to-Many dengan AddOn
     public function addons()
     {
-        return $this->hasMany(Addon::class, 'produk_id', 'id');
+        return $this->hasMany(AddOn::class, 'produk_id', 'id');
     }
 
     // Relasi One-to-Many dengan Portofolio
