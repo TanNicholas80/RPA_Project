@@ -70,7 +70,7 @@
                     @foreach ($searchedProduct as $kategori)
                         @foreach ($kategori->produk as $produk)
                             <a href="{{ route('produkuser.show', $produk->id) }}"
-                                class="block border border-[#764C31]/50 rounded-[12px] shadow-md overflow-hidden min-w-0 hover:bg-[#FFF6E4] transition duration-300">
+                                class="block border border-[#764C31]/50 rounded-[12px] shadow-md overflow-hidden min-w-0 hover:bg-[#FFF6E4] transition duration-300 h-[390px]">
 
                                 <!-- Foto Produk -->
                                 <div class="relative w-full h-64"> <!-- Tentukan tinggi tetap di sini -->
@@ -103,7 +103,7 @@
                     @foreach ($filteredKategori as $kategori)
                         @foreach ($kategori->produk as $produk)
                             <a href="{{ route('produkuser.show', $produk->id) }}"
-                                class="block border border-[#764C31]/50 rounded-[12px] shadow-md overflow-hidden min-w-0 hover:bg-[#FFF6E4] transition duration-300">
+                                class="block border border-[#764C31]/50 rounded-[12px] shadow-md overflow-hidden min-w-0 hover:bg-[#FFF6E4] transition duration-300 h-[390px]">
 
                                 <!-- Foto Produk -->
                                 <div class="relative w-full h-64"> <!-- Tentukan tinggi tetap di sini -->

@@ -110,7 +110,8 @@
             </div>
         </div>
     </div>
- @include('users.components.footer')
+</div>
+@include('users.components.footer')
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var swiperTop = new Swiper('.mySwiper2', {
