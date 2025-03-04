@@ -204,58 +204,58 @@
             <!-- Modal for Enlarged Image -->
 
             <div id="imageModal"
-                class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center hidden transition-opacity duration-300 ease-in-out">
-                <div
-                    class="absolute top-5 left-1/2 mt-52 md:mt-20 transform -translate-x-1/2 text-white text-lg px-4 py-2 rounded-md flex items-center gap-4">
-                    <p id="modalTitle" class="font-semibold text-2xl text-center mr-10"></p>
-                    <button onclick="closeModal()" class="text-white text-4xl font-bold">&times;</button>
-                </div>
-
-                <div class="relative mt-24  w-[90vw] max-w-3xl ">
+                class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center hidden transition-opacity duration-300 ease-in-out">
+                <div class="relative w-[90vw] max-w-3xl group">
+                    <div
+                        class="absolute -top-12 left-1/2 transform -translate-x-1/2 text-white text-lg px-4 py-2 rounded-md flex items-center gap-4">
+                        <p id="modalTitle" class="font-semibold text-2xl text-center mr-9"></p>
+                        <button onclick="closeModal()" class="text-white text-4xl font-bold">&times;</button>
+                    </div>
                     <!-- Image -->
                     <img id="modalImage" class="w-full md:h-[500px] object-cover rounded-lg shadow-xl">
+
+                    <!-- Navigation Buttons -->
+                    <button id="prevImage"
+                        class="absolute left-2 top-1/2 transform -translate-y-1/2 text-black text-4xl bg-[#FFF6E4] px-5 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">&#10094;</button>
+                    <button id="nextImage"
+                        class="absolute right-2 top-1/2 transform -translate-y-1/2 text-black text-4xl bg-[#FFF6E4] px-5 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">&#10095;</button>
 
                     <!-- Category -->
                     <p id="modalCategory"
                         class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white text-lg px-4 py-2 rounded-md">
                     </p>
                 </div>
-
-                <!-- Navigation Buttons -->
-                <button id="prevImage"
-                    class="absolute left-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10094;</button>
-                <button id="nextImage"
-                    class="absolute right-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10095;</button>
             </div>
 
 
             <!-- Modal untuk Video -->
             <div id="videoModal"
-                class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center hidden">
-                <div
-                    class="absolute top-5 mt-36 md:mt-24 left-1/2 transform -translate-x-1/2 text-white text-lg px-4 py-2 rounded-md flex items-center gap-4">
-                    <p id="modalTitleVideo" class="font-semibold text-2xl text-center mr-10"></p>
-                    <button onclick="closeModalVideo()" class="text-white text-4xl font-bold">&times;</button>
+                class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center hidden transition-opacity duration-300 ease-in-out">
+                <div class="relative w-[90vw] max-w-3xl group">
+                    <div
+                        class="absolute -top-12 left-1/2 transform -translate-x-1/2 text-white text-lg px-4 py-2 rounded-md flex items-center gap-4">
+                        <p id="modalTitleVideo" class="font-semibold text-2xl text-center mr-9"></p>
+                        <button onclick="closeModalVideo()" class="text-white text-4xl font-bold">&times;</button>
+                    </div>
+
+                    <!-- Video Player -->
+                    <iframe class="w-[80vw] h-[35vh] md:h-[70vh] rounded-lg shadow-xl" id="videoSource"
+                        allow="autoplay"></iframe>
+
+                    <!-- Navigation Buttons -->
+                    <button id="prevVideo"
+                        class="absolute left-2 top-1/2 transform -translate-y-1/2 text-black text-4xl bg-[#FFF6E4] px-5 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">&#10094;</button>
+                    <button id="nextVideo"
+                        class="absolute right-2 top-1/2 transform -translate-y-1/2 text-black text-4xl bg-[#FFF6E4] px-5 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">&#10095;</button>
+
+                    <!-- Category -->
+                    <p id="modalCategoryVideo"
+                        class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white text-lg px-4 py-2 rounded-md">
+                    </p>
                 </div>
-
-                <!-- Video Player -->
-                <iframe class="mt-24 w-[80vw] h-[35vh] md:h-[70vh] rounded-lg shadow-xl" id="videoSource"
-                    allow="autoplay"></iframe>
-
-                <!-- Category -->
-                <p id="modalCategoryVideo"
-                    class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white text-lg px-4 py-2 rounded-md">
-                </p>
-
-                <!-- Navigation Buttons -->
-                <button id="prevVideo"
-                    class="absolute left-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10094;</button>
-                <button id="nextVideo"
-                    class="absolute right-4 text-white text-4xl bg-black bg-opacity-50 px-3 py-2 rounded-full">&#10095;</button>
             </div>
         </div>
     </div>
-</div>
     @include('users.components.footer')
     <script>
         const tabFoto = document.getElementById('tabFoto');
